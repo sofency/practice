@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>自定义指令</title>
+	</head>
+	<body>
+		<div id="app1">
+			<p v-upper-text="msg1"></p>
+			<p v-lower-text="msg1"></p>
+		</div>
+		<div id="app2">
+			<p v-upper-text="msg2"></p>
+			<p v-lower-text="msg2"></p>
+		</div>
+		
+		<script type="text/javascript" src="../js/vue.js"></script>
+		<script type="text/javascript">
+			//定义全局指令
+			Vue.directive("upper-text",function(el,binding){
+				console.log(el,binding)
+				el.textContent=binding.value.toUpperCase()
+			})
+			
+			new Vue({
+				el:"#app1",
+				data:{
+					msg1:"sofency"
+				},
+				directives:{//只在当前范围内有效
+					'lower-text':function(el,binding){
+						console.log(el,binding)
+						el.textContent = binding.value.toLowerCase()
+					}
+				}
+			}),
+			new Vue({
+				el:"#app2",
+				data:{
+					msg2:"Alice"
+				},
+				directives:{//只在当前范围内有效 内置指令
+					'lower-text':function(el,binding){
+						console.log(el,binding)
+						el.textContent = binding.value.toLowerCase()
+					}
+				}
+			})
+		</script>
+		
+	</body>
+</html>

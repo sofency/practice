@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+</style>
+<head>
+    <meta charset="UTF-8">
+    <title>演示文档</title>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.js"></script>
+    <style type="text/css">
+        input{width: 100px;height: 30px;}
+        div{
+			width: 50px;
+			height: 50px;
+			border:1px solid green;
+			display: inline-block;
+			margin-left: 15px}
+      </style>
+</style>
+</head>
+<body>
+<h3>jQuery事件对象</h3>
+<input id="btn1" type="button" value="事件绑定"><br>
+<div></div>
+
+<script type="text/javascript">
+    $(function(){
+        /*    
+        $('#btn1').on('click',fn1)
+        $('#btn1').on('click',fn2)
+        function fn1(){
+            alert('事件绑定1')
+        }
+        function fn2(){
+            alert('事件绑定2')
+        }
+        $('#btn1').off('click',fn1)    
+        
+    //命名空间
+	   */
+        $('#btn1').on('click',function(){
+            alert('事件绑定1')
+        })
+        $('#btn1').on('click.a',function(){
+            alert('事件绑定2')
+        })
+        $('#btn1').on('mouseover.a',function(){
+            $(this).css('background','orange')
+        })
+        $('#btn1').off('.a')
+
+//额外数据
+
+    // $('#btn1').on('click',{name:'张三'},function(e){
+    //     alert('事件绑定'+e.data.name)
+    // })
+	
+
+    // $('#btn1').on('click',null,'abc',function(e){//必须加null修饰自己
+    //     alert('事件绑定'+e.data)
+    // })
+ })
+    //动态绑定事件
+	
+        // $('#btn1').on('click',function(e){//通过id进行添加功能  
+        //     $("<div></div>").appendTo($('body'))//只是将框架的格式进行添加 不会将内容添加到body中
+        // })
+		
+        // $('div').on('click',function(){
+        //     $(this).css('background','orange')
+        // })
+		
+        // $(document).on('click','div','a',function(e){//参数的介绍  'click是功能',div是操作的对象  a是传进的数据  function是绑定的功能
+        //     alert('事件绑定'+e.data)
+        //     $(this).css('background','orange')
+        // })
+
+        // $('#btn1').on('click',null,'div',function(e){
+        //     alert('事件绑定'+e.data)
+        // })
+		
+   
+</script>
+</body>
+</html>

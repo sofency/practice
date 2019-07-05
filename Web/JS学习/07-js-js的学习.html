@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>js数组的学习</title>
+		<!--数组的声明-->
+		<!--
+			1、数组的声明
+			2. 数组的赋值和取值
+			3. 数组的length属性
+			4. 数组的遍历  直接用alert进行输出
+		-->
+		<!--js的代码域-->
+		<script type="text/javascript">
+			
+			var arr=new Array();//第一种声明方式
+			arr[0]="123";
+			alert(arr);//输出数组
+			
+			var arr1=new Array(5);//第二种声明
+			alert(arr1.length);
+			
+			var arr2=[1,2,3,4,5];//直接赋值
+			alert(arr2);
+			//声明数组
+			var arr=[];//什么都能存,长度不确定
+			arr[0]=2;
+			arr[1]="abc";
+			arr[2]=true;
+			arr[3]=new Date();
+			arr[10]="haha";
+			alert(arr.length);//长度是11
+			
+			
+			
+			
+		</script>
+		
+		
+	</head>
+	<body>
+	</body>
+</html>

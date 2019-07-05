@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>js的事件响应</title>
+		<!--js的事件机制
+		若发生事件A  则执行动作B
+		-->
+		//单击事件
+		<style type="text/css">
+			#testThing{
+				border: solid 1px red;
+				width: 200px;
+				height: 200px;
+			}
+		</style>
+		<script type="text/javascript">
+			
+			//单击事件
+			function  testOnClick(){
+				alert("我是单击");
+			}
+			//测试双击
+			function testOndbClick(){
+				alert("测试双击");
+			}
+			//测试鼠标事件
+			function testOnmouseOver(){
+				alert("<p>哈哈哈</p>");
+			}
+			function testOnmousemove(){
+				alert("我在移动");
+			}
+			function testOnmouseout(){
+				alert("<p>我移出了</p>");
+			}
+			//键盘操作事件
+			function  testOnkeyup(){
+				alert("键盘弹起");
+			}
+			function  testOnkeydown(){
+				alert("键盘下压");
+			}
+			//焦点事件
+			function testOnfocus(){
+				alert("我是获取焦点");
+				//获取焦点可能会执行的动作 获取焦点后执行以下的动作 比如显示出下拉框
+			}
+			
+			function testOnblur(){
+				//失去焦点后可能会执行以下动作,比如撤销下拉栏
+				alert("我是失去焦点");
+			}
+			//页面加载事件
+			
+			
+			function testOnload(){
+				alert("页面正在加载");
+			}
+			
+		</script>
+	</head>
+	<body onload="testOnload()">
+		<!-- <script type="text/javascript">
+			testOnload();
+		</script><!--放在开头还没有加载完--> -->
+		<p>js事件的学习</p>
+		<hr ><!--换行操作-->
+		<input type="button" name="" id="" value="测试单击"  onclick="testOnClick()" />
+		<input type="button" name="" id="" value="测试单击"  ondblclick="testOndbClick()" />
+		<a href="http://www.baidu.com" >百度以下</a>
+		<hr >
+		
+		<!--事件响应之后在指定的位置进行显示-->
+		
+		<div id="testThing" onmouseover="testOnmouseOver()" onmousemove="testOnmousemove()" onmouseout="testOnmouseout()">
+		</div>
+		
+		键盘事件学习：<br>
+		键盘弹起事件：<input type="text" name="" id="" value="" onkeyup="testOnkeyup()"/><br>
+		键盘下压事件：<input type="text" name="" id="" value="" onkeydown="testOnkeydown()"/><br>
+		
+		
+		<hr >
+		<hr >
+		焦点事件学习：<br>
+		获取焦点：<input type="text" name="" id="" value="" onfocus="testOnfocus()"/><br>
+		失去焦点： <input type="text" name="" id="" value="" onblur="testOnblur()"/>
+		<hr >
+		<hr >
+		<img src="image/2.jpg" style="width: 100px; height: 100px;" onmouseup="testOnmouseOver()"  onmousemove="testOnmousemove()" onmouseout="testOnmouseout()">
+		<!--当想上面的鼠标进行移动时可以进行  当鼠标在图片上时 对图片进行放大处理 当鼠标不在图片上时 对图片进行复原处理-->
+		
+		<!-- <script type="text/javascript">
+			testOnload();
+		</script><!--放在后面表示页面加载完成之后--> -->
+		
+	</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		
+	</head>
+	<body>
+		<input type="radio" name="sex" value="boy" /> 男
+        <input type="radio" name="sex" value="girl" /> 女
+		<script type="text/javascript">
+			var  radio=document.getElementsByName("sex");
+			for (var i = 0; i < radio.length; i++) {
+				 radio[i].index = i;
+				 radio[i].onclick = function(){
+			  　    if(this.checked==true){
+					   alert("选中的值是:"+this.value)
+				}
+		    }
+		}
+		</script>
+	</body>
+</html>

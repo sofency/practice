@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>son界面</title>
+		<script type="text/javascript">
+			function testTime(){
+				window.setInterval(function(){
+					var span=document.getElementById("time");
+					span.innerHTML=span.innerHTML-1;
+					if(span.innerHTML==0){
+						window.close();//关闭当前窗口
+					}
+				},1000);
+			}
+			//调用父页面函数
+			
+			function  testFa(){
+				window.opener.testFather();
+			}
+			
+		</script>
+	</head>
+	<body onload="testTime()"><!--页面加载之后进行倒计时处理-->
+		
+		<h3>son界面</h3>
+		<hr >
+		<b style="-moz-animation: .25s, 100ms;">欢迎来到自学网<span id="time">
+			5
+		</span>秒后关闭</b>
+		<hr >
+		<input type="button" name="" id="" value="返回父级界面" onclick="testFa()" />
+		
+	</body>
+</html>

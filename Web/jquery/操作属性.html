@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>jQuery操作元素属性</title>
+		<!--声明js代码域-->
+		<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.js"></script><!--引入jquery的框架-->
+		<script type="text/javascript">
+			//获取元素属性
+			function testField(){
+				var uname=$("#uname");//根据id获取对象
+				alert(uname.val());//获取实时输入的值  可以将输入的输入作为依据与服务器中的数据进行比对
+				alert(uname.attr("type"));
+			}
+			
+			//修改元素属性
+			function testchangeField(){
+				var uname=$("#uname");//根据id获取对象
+				uname.attr("type","button");//将属性进行修改为button
+			}
+		</script>
+	</head>
+	<body>
+		<h3>
+			jQuery操作元素属性
+		</h3>
+		<input type="button" name="" id="" value="测试操作属性" onclick="testField()"/>
+		<input type="button" name="" id="" value="测试修改属性" onclick="testchangeField()"/>
+		<hr >
+		用户名：<input type="text" name="uname" id="uname" value="" />
+	</body>
+</html>

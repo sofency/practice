@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>form标签的学习</title>
+	</head>
+	<body align="center">
+		<h3>form标签的学习</h3>
+		<hr >
+		<form action="#" method="get">
+			<!--登陆-->
+			账户：<input type="text" value="" name="uname" /><br><!--name指定键值-->
+			密码：<input type="password" value="" name="upwd" /><br>
+			<!--单选按钮-->
+			身份：<input type="radio" name="identify" value="1" checked="checked"/>学生<input type="radio" name="identify" value="0" />老师<br>
+			<input type="submit" value="登陆"/><br>
+			<br>
+			<!--多选按钮-->
+			爱好：<br>
+			吃饭<input type="checkbox"  name="fav" value="1" checked="checked" /><br>
+			吃饭<input type="checkbox"  name="fav" value="2"  /><br>
+			吃饭<input type="checkbox"  name="fav" value="3"  /><br>
+			<br>
+			<!--下拉框-->
+			籍贯：<br>
+			<select name="address">
+				<option value="">--请选择--</option>
+				<option value ="0" selected="selected">中国</option>
+				<option value ="1">美国</option>
+				<option value ="2">英国</option>
+				<option value ="3">日本</option>
+			</select>
+			<br>
+			<!--声明一个输入大量文字的文本框-->
+			文本域：<br>
+				<textarea  name="introduce" rows="5" cols="50">	
+				</textarea><br>
+				<input type="submit" value="提交" />
+		</form>
+	</body>
+</html>
+<!--form学习
+		作用：收集并提交用户给指定服务器
+		注意： form标签 会收集其标签内部的数据
+		属性
+		    action: 收集的数据提交地址也就是URL
+			method: 收集的数据的提交方式
+					get: 适合小量数据  表单数据以？隔开 拼接在url后面 不同的键值对使用&隔开,不安全
+					post: 适合大量数据 隐式提交 
+					注意： 表单数据提交必须有nama属性否则不会提交
+					提交的表单项数据为兼职对，键为name属性的值，值为用户书写的数据
+		form表单域标签练习
+				作用：给用户提供可以进行数据书写或者选择的标签
+				
+		form表单标签的使用
+		   在数据提交时，form标签会将其内部所有form表单域标签中用户书写的数据按照method指明的提交方式
+		   提交给action属性指明的提交地址	
+		   
+		input标签
+		   属性 type: 
+				text表示输入的文本 
+				password输入的是密码
+				radio 选择按钮
+					name:属性相同数位单选框只能选择一项数据
+					value: 要提交的数据
+					checked：checked 使用此属性的单选默认是选择状态
+				checkbox 多选框的使用  选择多个爱好
+				      name:---一个多选组需要使用相同的name属性值
+					  value:要提交的数据
+					  
+					  
+					  
+		下拉框
+		  注意表单提交的是value值
+		
+		   
+		
+-->

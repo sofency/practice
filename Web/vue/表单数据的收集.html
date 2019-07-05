@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<form action="" @submit.prevent="handleSubmit">
+				<span>用户名：</span>
+				<input type="text" v-model="username" /><br><!--数据的绑定一定要使用v-model  然后在data中设置默认值 这样做实现了 输入框中的数据和data中的数据保持了一致 这样便于数据分离开  从而将数据传送到后台-->
+				<span>密码：</span>
+				<input type="text" v-model="pwd" /><br>
+				
+				<span>性别：</span>
+				<input type="radio" id="female" name="sex" value="女" v-model="sex"/><!--value的女值与vue中的sex一致默认选中-->
+				<label for="female" >女</label>
+				<input type="radio" id="male" name="sex" value="男" v-model="sex"/>
+				<label for="female">男</label><br>
+				
+				<span>爱好：</span>
+				<input type="checkbox" id="basket" value="basket" v-model="likes"/>
+				<label for="basket">篮球</label>
+				<input type="checkbox"   value="ball" id="ball" v-model="likes"/>
+				<label for="ball">网球</label>
+				<input type="checkbox" value="sing" id="sing"  v-model="likes"/>
+				<label for="sing">唱歌</label><br>
+				
+				<!--多选框-->
+				<span>家庭住址：</span>
+				<select v-model="cityId">
+					<option value ="0">请选择</option>
+					<option :value="city.id" v-for="(city,index) in cityall" :key="index">{{city.name}}</option>
+				</select><br>
+				
+				<!--介绍-->
+				
+				<span>介绍</span><br>
+				<textarea rows="4" cols="42" v-model="desc">
+				</textarea><br>
+				
+				<!--提交-->
+				<input type="submit" value="注册" @click="" />
+			</form>
+		</div>
+			
+		<!--将js文件尽量放外边-->
+			<script type="text/javascript" src="../js/vue.js"></script>
+			<script type="text/javascript">
+				new Vue({
+					el:"#app",
+					data:{
+						username:'',
+						pwd:'',
+						sex:'女',
+						likes:['basket'],//默认选择篮球
+						cityall:[{id:1,name:"河南"},{id:2,name:"河北"},{id:3,name:"江苏"}],
+						cityId:3,
+						desc:"stay Hungry stay foolish"
+					},
+					methods:{
+						handleSubmit(){//数据的提交
+							console.log(this.username,this.pwd,this.sex,this.likes,this.cityall,this.cityId,this.desc)
+						}
+					}
+				
+				})
+			</script>
+	
+	</body>
+</html>

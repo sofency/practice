@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>列表渲染</title>
+		<script type="text/javascript" src="../js/vue.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			<h2>测试v-for  遍历数组</h2>
+			<ul>
+				<li v-for="(p,index) in persons" :key="index">
+					{{index}}--{{p.name}}--{{p.age}}--<button @click="deleteP(index)">删除</button>--<button @click="updateP(index,{})">更新</button>---<button type="button" @click="add(index+1,{})" >添加</button>	
+						<!--想做个交互输入数据进行更新-->
+				</li>
+				<br>
+				
+			</ul>
+			<h2>测试 v-for 遍历对象</h2>
+			<ul>
+				<li v-for="(value,key) in persons[1]"><!--遍历的是-->
+					{{value}}--{{key}}<!--value显示的是值-->
+				</li>
+				
+			</ul>
+		</div>
+		<script type="text/javascript">
+			new Vue({
+				el:"#app",
+				data:{//实现了数据和视图的分离
+					persons:[
+						{name:'Tom',age:'18'},
+						{name:'sofer',age:'17'},
+						{name:'ahoj',age:'19'},
+						{name:'alice',age:'20'},
+					],
+					click:false,
+					alias:"so",
+					ag:"10"
+				},
+				
+				methods:{//实现了视图和方法的分离
+					deleteP: function(index){
+						this.persons.splice(index,1);//删除一个元素
+					},
+					
+					updateP:function(index,newP){
+						newP={name:this.alias,age:this.ag},
+						this.persons.splice(index,1,newP)
+					},
+					
+					add: function(index,newP){
+						newP={name:this.alias,age:this.ag},
+						this.persons.splice(index,0,newP)
+					}
+					
+				}
+			})
+		</script>
+	</body>
+</html>

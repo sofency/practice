@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<h2>hello world</h2>
+			<p>{{msg}}</p>
+			<p>{{msg.toUpperCase()}}</p>
+			<p v-text="msg"></p><!--textContent--><!--只会显示文本-->
+			<p v-html="msg"></p><!--innerHtml--><!--会将msg的标签进行解析-->
+			<h2>强制数据绑定</h2>
+			<img v-bind:src="imgUrl" >
+			<img :src="imgUrl">
+			<h2>绑定时间监听</h2>
+			<button v-on:click="test">test1</button>
+			<button @click="test1('abcs')">test2</button><!--可以再次进行参数的传递-->
+			
+		</div>
+		
+		<script type="text/javascript" src="../js/vue.js"></script>
+		<script type="text/javascript">
+			new Vue({
+				el:'#app',//获取id 即获取对象
+				data:{
+					msg:'<a href="http://www.sofency.top">sofency</a>',
+					imgUrl:'https://cn.vuejs.org/images/logo.png'
+				},
+				methods:{
+					test(){
+						alert("哈哈哈")
+					},
+					test1(content){
+						alert(content)
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

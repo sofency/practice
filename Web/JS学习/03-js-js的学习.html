@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>js的学习</title>
+		<!--
+			js的变量学习
+				1.js的变量声明 
+				2.js变量的特点 
+					声明只有var关键字 声明的变量可以存储任意类型的数据
+					js中的代码可以不用分号结尾
+					js 允许出现同名变量 但是后面的会将前面的数据覆盖
+					在声明变量时 如果未赋值  在底层是将变量类型转化为Undefined
+				3.js的变量类型 
+					alert(typeof a);//判断是什么类型的
+				4.js的变量强转
+				
+				5.特殊的值
+				
+			作用：变量是用来存储数据的，方便程序进行操作
+		-->
+		<!--声明js代码域-->
+		<script type="text/javascript">
+			var a=10.1;
+			var b="11";
+			alert(typeof(Number(b)));/*变量强转 只适用于字符型的数字转化为数字（Number）类型*/
+			alert(Number(a))
+			var d;
+			alert(Boolean(a));/*根据是否赋值输出true和false*/
+			alert(Boolean(d));
+			
+			
+		</script>
+		
+		
+		
+	</head>
+	<body>
+	</body>
+</html>

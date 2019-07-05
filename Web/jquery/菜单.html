@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>菜单</title>
+		<link rel="stylesheet" type="text/css" href="12.css"/>
+		<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.js"></script>
+		<script type="text/javascript">
+			function testNa(){
+				$("#na").slideUp(1000);
+			}
+		</script>
+	</head>
+	<body>
+		<h3>菜单案例</h3>
+		<hr >
+		<ul>
+			<i class="fa fa-toggle-on" aria-hidden="true"></i>&nbsp;&nbsp;<label for="" onclick="testNa()">新闻</label>
+			<div id="na">
+				<li><label for="">国内新闻</label></li>
+				<li><i class="fa fa-television" aria-hidden="true"></i><label for="">国际新闻</label></li>
+			</div>
+		</ul>
+	</body>
+</html>

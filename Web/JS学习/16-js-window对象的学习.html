@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>window对象的学习</title>
+		
+		<!--BOM浏览器对象模型：是规范浏览器对于js语言的支持
+				js本身就是调用浏览器本身的功能
+				
+			window对象使用学习：
+				1.window对象不用new,直接进行即可，类似Math的使用方式
+				2.框体方法
+				3.定时和时间间隔执行方法
+				4.子窗口方法
+		-->
+		
+		<!--声明js代码域-->
+		<script type="text/javascript">
+			
+			//框体的方法学习
+			//警告框  无返回值
+			function testAlert(){
+				window.alert("error input");
+			}
+			
+			//确认框
+			function testConfirm(){
+				var flag=window.confirm("你确定要删除吗");
+				if(flag){
+					alert("你已经删除了 可美了吧")
+				}else{
+					alert("这就对了 不然我们怎么赚钱");
+				}
+			}
+			
+			//提示框 输入昵称按钮
+			function testPrompt(){
+				 var nickname=window.prompt("请输入昵称");//有返回值
+				 alert(nickname);
+			}
+			//定时操作
+			
+			var id;
+			var is1;
+			function testSetTimeOut(){
+				id=window.setTimeout(function(){
+					alert("我是定时执行的");//事件
+				},3000);//事件
+			}
+			
+			//间隔执行
+			function testSetInterval(){
+				id1=window.setInterval(function(){
+					alert("我是间隔执行的事件");
+				},2000);
+			}
+			
+			//清除当前的定时方法
+			function testClearTimeOut(){
+				window.clearTimeout(id);
+			}
+			
+			//清除当前的间隔方法
+			function testClearInterval(){
+				window.clearInterval(id1);
+			}
+			
+		</script>
+		
+		
+		
+		
+	</head>
+	<body>
+		<h3>
+			js的window对象学习
+		</h3>
+		
+		<input type="button" name="" id="" value="error" onclick="testAlert()"/>
+		<input type="button" name="" id="" value="删除" onclick="testConfirm()"/><br>
+		<hr >
+		<input type="button" name="delete" id="0" value="测试提示框" onclick="testPrompt()"/><hr>
+		<input type="button" name="timeout" id="1" value="测试定时执行框" onclick="testSetTimeOut()"/>
+		<input type="button" name="Interval" id="2" value="测试间隔执行框" onclick="testSetInterval()"/>
+		<hr >
+		<input type="button" name="ClearTimeout" id="3" value="测试清除定时器" onclick="testClearTimeOut()"/><!--杀死进程里面的事件也不会执行-->
+		<input type="button" name="ClearInterval" id="3" value="测试清除间隔器" onclick="testClearInterval()"/>
+	</body>
+</html>

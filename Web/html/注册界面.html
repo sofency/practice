@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>注册界面</title>
+		<style type="text/css">
+			body{
+				background: url(image/hello.jpg);
+			}
+			form{
+				width: 450px;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%,-50%);
+				color: white;
+			}
+			
+			table{
+				border: none;
+			}
+			input{
+				background: none;
+				color: white;
+				border: none;
+				border-bottom: solid 1px aqua;
+			}
+			td{
+				text-align: center;
+			}
+			select{
+				background: none;
+			}
+		</style>
+	</head>
+	<body>
+		<form action="#" method="post">
+			<table border="1px" cellspacing="1px" cellpadding="10px">
+				<tr height="45px">
+					<td width="100px">用户</td>
+					<td width="250px">
+						<input type="text" name="user" value="" />
+					</td>
+				</tr>
+				<tr height="45px">
+					<td width="100px">密码</td>
+					<td width="250px">
+						<input type="password" name="pwd" value="" />
+					</td>
+				</tr>
+				<tr height="45px">
+					<td width="100px">邮箱</td>
+					<td width="250px">
+						<input type="text" name="email" value="" />
+					</td>
+				</tr>
+				<tr height="45px">
+					<td width="100px">手机号</td>
+					<td width="250px">
+						<input type="text" name="phone" value="" />
+					</td>
+				</tr>
+				<tr height="45px">
+					<td width="100px">性别</td>
+					<td width="250px">
+						男：<input type="radio"  checked="checked" name="sex" value="0"/>
+						女：<input type="radio" name="sex" value="1"/>
+					</td>
+				</tr>
+				<tr height="45px">
+					<td width="100px">爱好</td>
+					<td width="250px">
+						<form action="#" method="post">
+							<input type="checkbox" name="fav" value="2"/>看电影
+							<input type="checkbox" name="fav" value="2"/>烧烤
+							<input type="checkbox" name="fav" value="2"/>电影
+						</form>
+					</td>
+				</tr>
+				<tr height="45px">
+					<td width="100px">籍贯</td>
+					<td width="250px">
+						<select name="address">
+							<option value ="">--请选择--</option>
+							<option value ="0">河南</option>
+							<option value ="1">山东</option>
+							<option value ="2">江苏</option>
+							<option value ="3">山西</option>
+						</select>
+					</td>
+				</tr>
+				<tr height="45px">
+					<td width="100px">个人介绍</td>
+					<td width="250px">
+						<textarea style="background: none; color: white; font-weight: 400; padding-bottom: 0;" name="intro"  rows="3" cols="20">
+							
+						</textarea>
+					</td>
+				</tr>
+				<tr height="45px">
+					<td width="100px" colspan="2" align="center">
+						<input type="radio" name="agree" value=""  />是否同意本公司协议
+					</td>
+					
+				</tr>
+				<tr height="45px">
+					<td width="100px" colspan="2" align="center">
+						<input type="submit" name="submit" value="注册" />
+					</td>
+				</tr>
+			</table>
+		</form>
+		
+	</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>动画学习</title>
+		<style type="text/css">
+			/*显示的过渡效果*/
+			.fade-enter-active,.fade-leave-active{
+				transition: opacity 1s;
+			}
+			/*隐藏时的样式*/
+			.fade-enter, .fade-leave-to {
+			  opacity: 0;
+			}
+			.fade1-enter-active{
+				transition: all 1s;
+			}
+			.fade1-leave-active{
+				transition: all 3s;
+			}
+			/*隐藏时的样式*/
+			.fade1-enter, .fade1-leave-to {
+			  opacity: 0;
+			  transform: translateX(20px);
+			}
+			
+			.text-enter-active {
+			  animation: text-in 1s;
+			}
+			.text-leave-active {
+			  animation: text-in 3s reverse;/*将text-in的动画转换过来*/
+			}
+			@keyframes text-in {
+			  0% {
+				transform: scale(0);
+			  }
+			  50% {
+				transform: scale(1.5);
+			  }
+			  100% {
+				transform: scale(1);
+			  }
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<button v-on:click="show=!show">Toggle</button>
+			<transition name="fade">
+				<p v-show="show" class="fade-enter-to">hello</p>
+			 </transition>
+		</div>
+		
+		<div id="app1">
+			<button v-on:click="show=!show">Toggle</button>
+			<transition name="fade1">
+				<p v-show="show" class="fade1-enter-to">hello</p>
+			 </transition>
+		</div>
+		
+		<div id="demo">
+			<button @click="show=!show">Sofency</button><br>
+			<transition name="text">
+				<p v-if="show" style="display: inline-block;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris facilisis enim libero, at lacinia diam fermentum id. Pellentesque habitant morbi tristique senectus et netus.</p>
+			</transition>
+			
+			
+		</div>
+		<script type="text/javascript" src="../js/vue.js"></script>
+		<script type="text/javascript">
+			new Vue({
+				el:"#app",
+				data:{
+					show:true
+				}
+			}),
+			//多个实例进行操作
+			new Vue({
+				el:"#app1",
+				data:{
+					show:true
+				}
+			}),
+			new Vue({
+				el:"#demo",
+				data:{
+					show:true
+				}
+			})
+			
+		</script>
+	</body>
+</html>

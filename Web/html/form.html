@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>表格标签学习</title>
+	</head>
+	<body>
+		<h3>表格标签学习</h3>
+		<hr >
+		<p>表格标签常用属性的设置</p>
+		<table border="1px" cellspacing="1px" cellpadding="4px" bordercolor="red"><!--cellspacing 是单元格距离外边框的距离  cellpadding是单元格内部字距离内边框的距离-->
+			<tr>
+				<th>姓名</th>
+				<th>性格</th><!--th加黑居中-->
+				<th>爱好</th>
+				<th>颜值</th>
+				<th>看书</th>
+			</tr>
+			<tr align="center">
+				<td>吴婷</td>
+				<td>豪爽</td>
+				<td>吃</td>
+				<td>高</td>
+				<td>java</td>
+			</tr>
+		</table>
+		
+		<h4>单元格的合并学习</h4>
+		<!---table>tr*4>td*5 +tap键-->
+		<table border="1px" cellspacing="0px">
+			<tr height="35px">
+				<td width="100px" bgcolor="aqua"></td>
+				<td width="100px"></td>
+				<td width="100px"></td>
+				<td width="100px"></td>
+				<td width="100px"></td>
+			</tr>
+			<tr height="35px">
+				<td colspan="2"></td><!--记得删除一个单元格-->
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr height="35px">
+				<td></td>
+				<td></td>
+				<td rowspan="2"></td><!--向下合并 所以下面要删除一行--> 
+				<td></td>
+				<td></td>
+			</tr>
+			<tr height="35px">
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+		</table>
+	</body>
+</html>
+<!--
+table: 声明一个表格
+	tr:声明一行  设置行高height 所有单元格的高度都发生变化
+		td :声明一个单元格
+	属性: border :给表格添加边框
+		  width: 设置表格的宽度
+		  height: 设置表格的高度
+		  
+	特点: 
+-->

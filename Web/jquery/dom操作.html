@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>dom操作</title>
+		<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.js"></script>
+		<script type="text/javascript">
+			function testGet(fun){
+				var bookId=fun.parents().getElementsByTagName("td")[0].innerText;
+				alert(bookId)
+			}
+		</script>
+	</head>
+	<body>
+		<table border="1px solid red" cellspacing="10px" cellpadding="10px">
+			<tr>
+				<td>Data1</td>
+				<td>Data2</td>
+				<td>Data3</td>
+				<td>Data4</td>
+				<td><input type="button" name="test" id="test" value="测试"  onclick="testGet(this)"/></td>
+			</tr>
+			
+			<tr>
+				<td>Data1</td>
+				<td>Data2</td>
+				<td>Data3</td>
+				<td>Data4</td>
+				<td><input type="button" name="test" id="test1" value="测试"  onclick="testGet(this)"/></td>
+			</tr>
+		</table>
+	</body>
+</html>

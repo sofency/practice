@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>js的自定义类</title>
+		<!--声明js代码域-->
+		<!--
+		    对象的作用： 是用来存储整体数据
+			原因： 很多时候 我们没有办法预先知道一个对象应该有哪些属性，所以只能临时创建一个对象来自定义属性来存储数据，来保证数据的完整性
+			应用：
+			   Ajax中会使用
+			
+			使用： 创建自定义对象
+			  var 对象名=new Object();
+			  对象名.属性名1=属性值1；
+			  对象名.属性名2=属性值2；
+			  对象名.属性名3=属性值3；
+		     
+			  
+			   var 对象名={};
+			  对象名.属性名1=属性值1；
+			  对象名.属性名2=属性值2；
+			  对象名.属性名3=属性值3；
+		
+		
+		-->
+		
+		
+		
+		
+		<script type="text/javascript">
+			//创建自定义对象
+			var obj=new Object();
+			obj.name="吴婷";
+			obj.age=18;
+			obj.test=function(){
+				alert("是小仙女");
+			}
+			
+			var test={
+				test.name="sofency";
+			}
+		</script>
+		
+	</head>
+	<body>
+	</body>
+</html>

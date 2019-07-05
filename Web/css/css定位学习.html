@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<!--
+		  定位学习
+		  position:
+		      相对定位:relative   可以使用相应的top left bottom right进行位置的改变
+			  绝对定位: absolute  使用元素参照界面或者相对界面进行移动
+			  固定定位 fixed 将元素固定在页面的固定位置
+		-->
+		
+		
+		
+		<style type="text/css">
+			
+			
+			#div01{
+				border: solid 1px orange;
+				height: 100px;
+				width: 400px;
+				margin-top: 50px;
+				margin-bottom: 20px;
+			}
+			#showdiv{
+				border: solid 1px red;
+				width: 50px;
+				height: 50px;
+				position: absolute;
+				top: 10px;
+			}
+			#div02{
+				border: dashed 1px orange;
+				height: 100px;
+				width: 400px;
+				margin-bottom: 20px;
+				position: relative;
+				z-index: 2;
+				left: 80px;
+				top: 50px;
+				background-color: red;
+				
+			}
+			#div03{
+				border: solid 1px orange;
+				height: 100px;
+				width: 400px;
+				background-color: #808080;
+				position: relative;
+				z-index: 3;
+			}
+			
+			#div04{
+				border: solid 1px blue;
+				height: 50px;
+				width: 50px;
+				position: fixed;
+				top: 20px;
+				left: 200px;
+				
+				
+			}
+		</style>
+		
+		
+		
+		
+		<title></title>
+	</head>
+	<body>
+		<div id="div01">
+			<div id="showdiv">
+				
+			</div>
+		</div>
+		<div id="div02">我见过春日夏风，秋叶冬雪，也踏遍南水北山，东麓西陵，可这四季春秋，苍天泱水，都不及你对我展眉一笑</div>
+		<div id="div03"></div>
+		<div id="div04">
+			
+		</div>
+	</body>
+</html>

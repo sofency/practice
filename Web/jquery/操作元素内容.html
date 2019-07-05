@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>jquery操作元素内容</title>
+		<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.js"></script>
+		<script type="text/javascript">
+			//声明函数
+			function testHtml(){
+				//获取元素对象
+				var showdiv=$("#showdiv");
+				alert(showdiv.html());//获取的是全部的内容 包括括号
+				alert(showdiv.text());
+			}
+			//修改元素的内容
+			function testHtml2(){
+				var showdiv=$("#showdiv");
+				showdiv.html(showdiv.html()+"<i>哈哈哈哈</i><br>");//字符串的拼接 里面的标签也会被执行
+			}
+			
+			
+			
+			
+		</script>
+	</head>
+	<body>
+		<h3>
+			操作元素的内容
+		</h3>
+		<input type="button" name="" id="" value="获取元素内容" onclick="testHtml()" />
+		<input type="button" name="" id="" value="修改元素内容" onclick="testHtml2()" />
+		<div id="showdiv"><b>吴婷小仙女</b>
+		</div>
+	</body>
+</html>

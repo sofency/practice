@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>操作html的属性</title>
+		
+		<script type="text/javascript">
+			
+			//获取元素对象
+			function testGetField(){
+				var inp=document.getElementById("test");
+				alert(inp.type+"-"+inp.name+"-"+"-"+inp.value);
+			}
+			//修改元素的信息
+			function testChange(){
+				var inp=document.getElementById("pwd");
+				inp.type="button";
+			}
+			///尽量不要修改name和id
+			
+			//获取自定义属性
+			
+			function testgetOwnField(){
+				var inp=document.getElementById("own");
+				alert(inp.getAttribute("abc"));
+			}
+			
+			//修改自定义属性
+			function testgetOwnField2(){
+				var inp=document.getElementById("own");
+				inp.setAttribute("abc","sofency");
+			}
+			
+			function testgetOwnField3(){
+				var inp=document.getElementById("own");
+				inp.setAttribute("abc","吴婷");
+			}
+			
+			//获取对象之后
+			//innerHtML 获取标签里面的所有内容 包括标签
+			//innerText 获取文本内容
+			
+			
+		</script>
+		
+	</head>
+	<body>
+		<h3>
+			js操作html的元素属性
+		</h3>
+		<!--获取元素的属性--->
+		用户名：<input type="text" name="username" id="test" value="" />
+		<br>
+		<input type="button" name="" id="" value="获取元素属性" onclick="testGetField()" />
+		
+		<hr >
+		<!--修改元素属性-->
+		密码：<input type="text" name="pwd" id="pwd" value="" /><br>
+		<input type="button" name="" id="" value="修改类型值"  onclick="testChange()"/>
+		<hr >
+		
+		<!--获取自定义属性-->
+		OWN：<input type="text" name="pwd" id="own" value="" abc="吴婷"/><br>
+		<input type="button" name="" id="" value="获取自定义属性"  onclick="testgetOwnField()"/>
+		<input type="button" name="" id="" value="修改自定义属性"  onclick="testgetOwnField2()" ondblclick="testgetOwnField3()"/>
+		
+	</body>
+</html>

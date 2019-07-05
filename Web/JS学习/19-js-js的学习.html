@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>document对象的引用</title>
+		<script type="text/javascript">
+			//通过id获取标签的对象
+			function testGetEleById(){
+				 var p=window.document.getElementById("uname");
+				 alert(p.value)//获取输入文本  以便向数据库里面检索账号密码登录
+				 document.write(p.value);//向网页写数据
+			}
+			
+			//通过Name获取标签的对象数组
+			function testGetEleByName(){
+				var favs=document.getElementsByName("fav");
+				alert(favs.length);
+			}
+			//依次可以通过class获取  标签名方式
+			//间接获取方式  父子关系
+			function testGetEleParent(){
+				var showdiv=document.getElementById("showdiv");
+				var childs=showdiv.childNodes;
+				alert(childs);
+				alert(childs.length);//注意在标签进行换行时也会占用一个字符
+			}
+			
+			//子父关系
+			function testGetEleChild(){
+				var child=document.getElementById("testdiv");
+				var div=child.parentNode;
+				alert(div);
+			}
+			//兄弟关系
+			function testGetEleBrother(){
+				
+				var inp=document.getElementById("testdiv");
+				var preEle=inp.previousSibling;//弟获兄
+				var nextEle=inp.nextSibling;//兄获弟
+				alert(preEle+"::"+nextEle);
+			}
+			
+		</script>
+		
+		<style type="text/css">
+			#showdiv{
+				border: 1px solid orange ;
+				height: 300px;
+				width: 378px;
+			}
+		</style>
+	</head>
+	<body>
+		
+		用户名：<input type="text" name="uname" id="uname" value="" />
+		
+		<input type="button" name="test" id="test" value="获取文本" onclick="testGetEleById()" />
+		
+		<hr >
+		<input type="checkbox" name="fav" id="fav" value="" />唱
+		<input type="checkbox" name="fav" id="fav" value="" />跳
+		<input type="checkbox" name="fav" id="fav" value="" />rap
+		<input type="checkbox" name="fav" id="fav" value="" />篮球
+		<hr >
+		<input type="button" name="" id="" value="获取按钮属性"  onclick="testGetEleByName()"/>
+		
+		<hr >
+		间接获取方式学习：<br><br>
+		<input type="button" name="" id="" value="获取父子关系" onclick="testGetEleParent()" />
+		<input type="button" name="" id="" value="获取子父关系" onclick="testGetEleChild()" />
+		<input type="button" name="" id="" value="获取兄弟关系" onclick="testGetEleBrother()" />
+		<hr >
+		<div id="showdiv">
+			<input type="" name="" id="" value="" /><input type="" name="" id="testdiv" value="" />
+			<input type="" name="" id="" value="" />
+			<input type="" name="" id="" value="" />
+		</div><!--show.length=9-->
+		
+		
+		
+	</body>
+</html>

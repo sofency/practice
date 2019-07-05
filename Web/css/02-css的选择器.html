@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>css的选择器学习</title>
+		<style type="text/css">
+			/* 下面将所有的table标签都变了  里面不能使用<!--进行注释-->*/
+			/* 标签选择器 */
+			table{
+				width: 300px;
+				height: 100px;
+				border: solid  1px white;
+				background-color: burlywood;
+			}
+			
+			/* id选择器  优先级别高*/
+			#t1{
+				background-color: green;
+			}
+			/* 类选择器 .类选择器名{样式1，样式2...}
+			将不同的标签添加相同的样式
+			*/
+			.common{
+				color: blue;
+			}
+			
+			/* 全部选择选择器  将html的所有标签添加相同的样式   */
+			/* 组合选择器   将标签名或者class类名组合在一起进行使用*/
+			/* 子选择器 */
+			ul li a{
+				color: black;
+			}
+			
+			/* --通过 id对指定的部分进行修改样式 */
+			#t2 a{
+				color: #FF0000;
+			}
+			
+			/* 属性选择器：
+				标签名[属性名=属性值]{样式名1，样式值....}
+			    
+			  */
+			
+		</style>
+	</head>
+	<body>
+		<h3></h3>
+		<h3>css选择器学习</h3>
+		<hr >
+		<!--增加标签-->
+		<table id="t1" class="common">
+			<tr>
+				<td>1</td>
+				<td>1</td>
+				<td>1</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+		</table>
+		
+		<table class="common">
+			<tr>
+				<td>1</td>
+				<td>1</td>
+				<td>1</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+		</table>
+		<b class="common">css学习</b>
+		<hr >
+		
+		<ul>
+			<li><a href="">1314</a></li>
+			<li><a href="">522</a></li>
+			<li><a href="">2442</a></li>
+		</ul>
+		
+		<hr >
+		<p id="t2">
+			<a href="">alice</a>
+			<a href="">sofency</a>
+		</p>
+		<p>
+			<a href="">alice</a>
+			<a href="">sofency</a>
+		</p>
+		
+	</body>
+</html>

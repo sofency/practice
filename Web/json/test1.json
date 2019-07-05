@@ -1,0 +1,9 @@
+//将数据库传出的数据封装成json文件
+
+var jsonObject={
+	"name":"sofency",
+	"address":"西安工程大学",
+	"age":18,
+	"phone":"18729380933"
+};
+			

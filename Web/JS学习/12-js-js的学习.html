@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>js中的事件响应</title>
+		<!--
+			js中的类的学习
+				1.类的声明
+				2.类的使用
+				3.类的继承
+		-->
+		<script type="text/javascript">
+			
+			//1.类的声明
+			function Person(name,age){
+				this.name=name;
+				this.age=age;//不用声明属性
+				this.fav="唱歌";
+			}
+			
+			function User(uname,pwd){
+				this.uname=uname;
+				this.pwd=pwd;
+			}
+			
+			Person.prototype.test=function(){alert("嘿嘿")};//Person类中的公共区域 即所有的Person对象都可以调用
+			//上面那个很少用 其就是把公共的属性写成prototype的形式  太浪费代码
+			//可以将公共的属性写到一个类中,再将类封装成对象,将对象设置成prototype类型的
+			User.prototype.testU=function(){alert("我是user")};//两个不同的类
+			//Person.prototype.user=new User();//继承的骚操作  将要继承的父类new 对象 当做子类的一个属性  变相继承
+			Person.prototype=new User();//将对象赋值给公共区间
+			
+			//2.使用类
+			var p1=new Person("吴婷",18);
+			alert(p1.name);
+			alert(p1.age);
+			//p1.test();//
+			//alert(p1.test());test()方法无返回值所以会返回undefined
+			
+			//我想用对象p1调用User的公共方法(也就是所说的继承)
+			//变相继承的写法
+			//p1.user.testU();//调用了user的属性中的testU方法  
+			
+			p1.testU();
+			
+			
+		</script>
+		
+		
+		
+		
+		
+	</head>
+	<body>
+	</body>
+</html>

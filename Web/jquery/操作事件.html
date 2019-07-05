@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>操作事件</title>
+		<!--引入jquery文件-->
+		<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.js"></script>
+		<!--声明js代码域-->
+		
+		<script type="text/javascript">
+			//js动态添加事件
+			function testThing(){
+				//获取元素对象
+				var btn=document.getElementById("btn");//js写法
+				//var btn=$("#btn");//jquery写法
+				//添加事件
+				btn.onclick=function(){
+					alert("我是js事件");//js添加的事件不能移除
+				}
+			}
+			//jquery永久添加事件
+			function testBind(){
+				//$("#btn2").bind("click",function(){alert("我是jquery事件")}); 直接获取对象进行赋值
+				var btn2=$("#btn2");
+				btn2.bind("click",function(){alert("我是jquery2事件")});
+				btn2.bind("click",function(){alert("我绑定了两个事件")});//可以实现给一个事件添加多个函数
+			}
+			
+			//one事件
+			function  testOne(){
+				$("#btn3").one("click",function(){alert("我是one事件")});
+			}
+			//解绑事件
+			function testunBind(){
+				$("#btn2").unbind("click");
+			}
+			
+			
+			//js页面加载
+			// window.onload=function(){
+			// 	alert("正在加载中");
+			// }
+			//js的加载会被覆盖
+			//jQuery页面的加载方式
+			
+			$(document).ready(function(){alert("我是jquery")});
+			$(document).ready(function(){alert("我是jquery")});
+			$(document).ready(function(){alert("我是jquery")});//多个加载函数不会被覆盖
+		</script>
+	</head>
+	<body>
+		<h3>操作事件</h3>
+		<input type="button" name="" id="" value="测试js动态添加事件" onclick="testThing()" />
+		<input type="button" name="" id="" value="测试jquery动态添加事件" onclick="testBind()" />
+		<input type="button" name="" id="" value="测试jquery动态解绑事件" onclick="testunBind()" />
+		<input type="button" name="" id="" value="测试jquery添加一次性事件"  onclick="testOne()"/>
+		<hr >
+		<input type="button" name="" id="btn" value="测试js" />
+		<input type="button" name="" id="btn2" value="测试jquery" />
+		<input type="button" name="" id="btn3" value="测试One" />
+		
+		
+		
+	</body>
+</html>

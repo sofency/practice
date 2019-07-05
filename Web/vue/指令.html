@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>指令的学习</title>
+		<style type="text/css"><!--在页面的数据未完成加载时不会显示数据-->
+			[v-cloak]{
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<p ref="content">sofency</p>
+			<button @click="hint">提示</button><!--提示上面的内容-->
+			<p v-cloak>{{msg}}</p>
+		</div>
+		<script type="text/javascript" src="../js/vue.js"></script>
+		<script type="text/javascript">
+			new Vue({
+				el:"#app",
+				data:{
+					msg:"alice"
+				},
+				methods:{
+					hint(){
+						alert(this.$refs.content.textContent)
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

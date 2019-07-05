@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>锚点学习</title>
+		<style type="text/css">
+			body{
+				border: solid 1px red;
+				width: 30%;
+				margin: auto;
+			}
+			div{
+				background-color: #ffffff;
+			}
+			p{
+				color: cadetblue;
+			}
+			a{
+				color: #FF0000;
+			}
+		</style>
+		<script type="text/javascript">
+			
+			function testChangetoProtect(){
+				var div=document.getElementById("content");
+				div.style.backgroundColor="#7A7A7A";//只能一次操作一个属性
+			}
+			
+			function testChangetoWhite(){
+				var div=document.getElementById("content");
+				div.style.backgroundColor="#ffffff";
+			}
+			function testAddImg(){
+				var div=document.getElementById("content");
+				div.style.backgroundImage="url(image/hello.jpg)";
+			}
+			function testDeleteImg(){
+				var div=document.getElementById("content");
+				div.style.backgroundImage="";
+			}
+		</script>
+		
+		
+	</head>
+	<body>
+		<div id="content">
+			<h3 style="color: #FF0000;">锚点学习 &nbsp;&nbsp</h3>
+			<input type="button" name="" id="" value="护眼模式" onclick="testChangetoProtect()"/>
+			<input type="button" name="" id="" value="白昼模式" onclick="testChangetoWhite()"/>
+			<input type="button" name="" id="" value="添加图片" onclick="testAddImg()"/>
+			<input type="button" name="" id="" value="去除图片" onclick="testDeleteImg()"/>
+			<hr >
+			
+			<p>目录:</p>
+			
+			<a href="#first">第一章</a><br>
+			<a href="#second">第二章</a><br>
+			<a href="#third">第三章</a><br>
+			<a href="#forth">第四章</a><br>
+			<a href="#fifth">第五章</a><br>
+			
+			<p>第一章</p>
+			<a name="first"></a>
+			<p>
+				选择单身生活，可以避免婚姻带来的焦虑和无力感，可以使她的视野更开阔。
+			</p>
+			<p>
+				现在，她有足够的能力赚钱养活自己，过自己想过的生活，参与社会的竞争。
+			</p>
+			<p>
+				没有他，她一样生活得很好。 相见不如不见
+			</p>
+			
+			<p>第二章</p>
+			<a name="second"></a>
+			<p>
+				生活需要我们不断地去学会做人，但做人有时候却让我们在生活中永远也读不懂它，
+			</p>
+			<p>
+				一个不确定的明天，一个不知道的未来。突然好迷茫，但是要学会坚持。
+			</p>
+			<p>
+				校园里的树时而随风摇摆，时而站立不动，时而从树枝上落下几片可怜的树叶.
+			</p>
+			<p>
+				然而，这些并不影响绿树在深秋的魅力。
+			</p>
+			<p>
+				校园里的花都照样开放，蜜蜂照样忙碌得采蜜，有许多蜜蜂在花的周围飞来飞去，在寻找哪一朵比较好。
+			</p>
+			
+			
+			
+			
+			<p>第三章</p>
+			<a name="third"></a>
+			<p>
+				一路走来，看过多少物是人非的风景；走过多少聚散依依的旅程；
+			</p>
+			<p>
+				有多少情是隔水观望的花，有多少人是到达不到的彼岸。
+			</p>
+			<p>
+				我不是你的一帘幽梦，而你，却早已是我的千转百回。
+			</p>
+			<p>
+				把曾经的过往，装订在在岁月的素笺上，打开，便是美好；封尘，便已倾城。
+			</p>
+			
+			<p>第四章</p>
+			<a name="forth"></a>
+			<p>
+				寻找亮点，是我们每个人一生的执着；
+			</p>
+			<p>
+				只有找对施展的空间，才能发挥自己的能量。
+			</p>
+			<p>
+				假如一生不去寻找生命的亮点，我们就会糊里糊涂地生活，
+			</p>
+			<p>
+				目标不明确，观点不充实，人生路上茫然行驶，生活就不会有好的结局。
+			</p>
+			
+			
+			<p>第五章</p>
+			<a name="fifth"></a>
+			<p>
+				独坐岁月，一季喧嚣里，守着一帘幽梦，
+			</p>
+			<p>
+				走走停停的站台上，感动着一次次遇见，或深或浅，倍感温暖，
+			</p>
+			<p>
+				动荡的站台，起伏的心音，谁是你的心里的暖香，你眉底的脉脉含情?
+			</p>
+			<p>
+				人生这场无止境的修行，体会中感悟，感动中珍惜。
+			</p>
+			<a href="#">回到顶部</a>
+		</div>
+		
+	</body>
+</html>

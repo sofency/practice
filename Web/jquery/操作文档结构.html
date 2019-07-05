@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>操作文档结构</title>
+		
+		<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.js"></script><!--引入jquery的框架-->
+		<style type="text/css">
+			#showdiv{
+				border: 2px solid orange;
+				width: 300px;
+				height: 300px;
+			}
+		</style>
+		<script type="text/javascript">
+			//向后追加带标签的内容
+			function testAppend(){
+				var div=$("#showdiv");
+				div.append(":很丧，但庆幸有代码为伴。");//追加内容
+			}
+			//向后追加对象
+			function testAppendTo(){
+				var div=$("#showdiv");//获取对象
+				$("#u1").appendTo(div);//将u1里面的内容(对象)添加到div中  将u1添加到div后面 字面翻译
+			}
+			
+			//向前插入可以是带标签的内容 标签会被执行
+			function testPrepend(){
+				//获取元素对象
+				var div=$("#showdiv");
+				//使用prepend()方法
+				div.prepend("<i>你好，爱情再见.</i>");//追加到对象内部的前面
+			}
+			//向前插入对象 ()
+			function testPrependTo(){
+				var div=$("#showdiv");
+				$("#pre").prependTo(div);//英文的翻译  将pre块中的元素加载div的前面
+			}
+			//测试after  外部插入 before插入
+			function testAfter(){
+				var div=$("#showdiv");
+				div.after("<b>我是一个小小鸟，想要飞却飞不高啊</b>");
+			}
+			
+			//测试empty()
+			function testEmpty(){
+				var div=$("#showdiv");
+				div.empty();
+			}
+			
+			//测试clone和prependTo的用法
+			function testClone(){
+				var s=$("#wor");
+				var test=$("#he").prependTo("#wor");//复制填充到div块中
+				s.append(test);
+			}
+		</script>
+	</head>
+	
+	<body>
+		<h3>操作文档结构</h3>
+		<hr >
+		<input type="button" style="margin-bottom: 5px;" name="" id="" value="测试append" onclick="testAppend()"/>
+		<input type="button" name="" id="" value="测试appendTo" onclick="testAppendTo()"/>
+		<input type="button" name="" id="" value="测试prepend" onclick="testPrepend()" />
+		<input type="button" name="" id="" value="测试PrependTo" onclick="testPrependTo()"/>
+		<input type="button" name="" id="" value="测试after" onclick="testAfter()" />
+		<input type="button" name="" id="" value="测试empty"  onclick="testEmpty()"/><!--清除内部标签-->
+		<hr >
+		
+		<b id="he">Hello </b>
+		<p id="wor">World</p>
+		
+		<input type="button" name="" id="" value="测试clone" onclick="testClone()"/>
+		
+        <u id="u1">对于程序员来说，喜欢一个人很容易但是让对方爱上自己却很难</u><!--添加到appendTo的对象 测试testAppendTo使用的-->
+		<u id="pre">Sofency,</u>
+		
+		<div id="showdiv">
+			<b>程序员的爱情观</b>
+		</div>
+	</body>
+</html>

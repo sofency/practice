@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>js的函数学习</title>
+		
+		
+		
+		
+		<!--声明js的代码域-->
+		<script type="text/javascript">
+			
+			//函数作为实参进行传递
+			var testobj=function(a){
+				alert(a);
+			}
+			var testparm=function(){
+				alert("我是传参的");
+				return "js";
+			}
+			testobj(testparm());//将函数作为实参传入函数 先将函数体里面的alert("我是传参的输出")再将函数的返回值输出
+			
+			//开发中经常用到的传递方式
+			function testObj1(fn){//实参是函数对象
+				fn();
+			}
+			
+			var a=testObj1(function(){
+				alert("我是最靓的崽");
+			})
+			testObj1(a);//先将a函数里面的内容打印出来,又因为a函数没有返回值 所以再打印undefined
+			
+		</script>
+		
+		
+	</head>
+	<body>
+		
+		
+		
+		
+		
+	</body>
+</html>

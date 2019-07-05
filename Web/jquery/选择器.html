@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>选择器的学习</title>
+		<!--
+		支持各种浏览器
+		jquery操作元素属性
+		jquery操作元素的属性
+		jquery操作元素的样式和内容
+		jquery操作元素的文档结构
+		jquery的时间
+		jquery的动画
+		-->
+		
+		 <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.js"></script>
+		 
+		<script type="text/javascript">
+			//测试获取id
+			function testId(){
+				var inp=$("#uname");//#是获取id名 .是获取类名 
+				alert(inp.val());
+			}
+			//测试标签
+			function testEle(){
+				var inp=$("input");
+				alert(inp.length);//获取标签的个数
+				alert(inp[0].value);//是数组的话写value
+			}
+			//测试类
+			function testClass(){
+				var inp=$(".test");//返回的是数组
+				alert(inp.length);
+			}
+			//组合选择器
+			function testAll(){
+				var eles=$("h3,input");
+				alert(eles.length);
+			}
+			
+		</script>
+	</head>
+	<body>
+		<h3>选择器的使用</h3>
+		<input type="button" name="" id="" value="测试id" onclick="testId()"/>
+		<input type="button" name="" id="" value="测试标签" onclick="testEle()"/>
+		<input class="test" type="button" name="" id="" value="测试类" onclick="testClass()"/>
+		<input type="button" name="" id="" value="组合选择器" onclick="testAll()"/>
+		<hr >
+		用户名: <input type="text" id="uname" value="吴婷" />
+		
+		
+		
+	</body>
+</html>

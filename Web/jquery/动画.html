@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>动画的操作</title>
+		<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.js"></script>
+		<style type="text/css">
+			#showdiv{
+				height: 300px;
+				display: none;
+				background-image: url(2.jpg);
+			}
+			#div01{
+				height: 300px;
+				background-color: orange;
+			}
+		</style>
+		<script type="text/javascript">
+			function test(){
+				$("#showdiv").show(3000);
+				$("#div01").hide(3000);
+				// $("#showdiv").hide(3000);
+				// $("#div01").show(3000);
+				$("div").toggle(3000);
+				$("#showdiv").slideDown(3000);
+				$("#div01").slideUp(2000);
+				$("#showdiv").fadeOut(3000);//淡出
+			}
+			
+		</script>
+	</head>
+	<body onload="test()">
+		<div id="showdiv">
+			
+		</div>
+		<div id="div01">
+			
+		</div>
+		
+		
+	</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>js函数的声明</title>
+		<!--函数的学习
+			作用 ：功能代码的封装，减少代码的冗余
+			  1.函数的声明
+			      方式1： function 函数名（形参1，形参2）{执行体}
+				  方式2：  var 函数名=new Function("形参1","形参2"...,"函数执行体（）")  此表明在js中函数是以对象的形式存在的
+				  方式3：  var test3=function(a1,a2){
+					  alert("第三种函数声明")
+				  }
+			  2.函数的参数
+				   js中的函数在调用时，形参可以不赋值，也可以不全赋值  赋值的话是依次赋值
+				   
+				   
+			  3.函数的返回值
+				
+		  
+		-->
+		<!--声明js代码域--> 
+		<script type="text/javascript">
+			//1.声明函数
+				//方式1:
+				function test(a1,a2){  //和类的声明差不多  只不过在书写的过程中自己要分清自己写的是类还是对象
+					alert("函数声明1");
+				}
+				//调用声明的函数
+				test(1,2);
+			
+				//2.函数的参数
+				function testParm(a1,a2,a3){
+					alert(a1);
+					alert("函数的形参学习");
+				}
+				testParm("1");//在调用函数时 可以不降所有的形参都赋值
+				//3.函数的返回值
+				var testReturn=function(){
+					alert("函数的返回值学习");
+					return "js";
+				}
+				alert(testReturn());//输出的是返回值
+				alert(testReturn);//输出的是函数主体  即 funxtion(){函数体}
+							
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

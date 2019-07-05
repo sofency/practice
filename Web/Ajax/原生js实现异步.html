@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript">
+			
+			function fun(){
+				//发送异步请求
+				//1.创建核心对象
+				var xmlhttp;
+				if (window.XMLHttpRequest)
+				  {// code for IE7+, Firefox, Chrome, Opera, Safari
+				     xmlhttp=new XMLHttpRequest();
+				  }
+				else
+				  {// code for IE6, IE5
+				     xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+				  }
+				
+				 //2.建立连接
+				 /*
+				   参数
+				     1.请求方式 GET  POST
+					 2.请求的url
+					 3.同步或者异步请求 
+				 */
+				
+				xmlhttp.open("GET",,true);
+				
+				//发送请求
+				xmlhttp.send()
+				
+			}
+			
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

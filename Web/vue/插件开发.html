@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>插件的学习</title>
+	</head>
+	<body>
+		
+		<div id="app">
+			<p v-directive-text="msg"></p>
+		</div>
+		
+		<script type="text/javascript" src="../js/vue.js"></script>
+		<script type="text/javascript" src="./plugin.js"></script>
+		<script type="text/javascript">
+	
+			Vue.use(MyPlugin)//引入插件
+			 //内部会执行MyPlugin.install(Vue)
+			Vue.myGlobalMethod()
+			//引入全局变量
+			
+			const vm=new Vue({
+				el:"#app",
+				data:{
+					msg:"I love You"
+				}
+			})
+			vm.$myMethod()
+			
+		</script>
+		
+		
+		
+	</body>
+</html>

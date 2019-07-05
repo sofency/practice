@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>css的学习</title>
+		
+		<!--
+		    CSS声明学习
+				1.在head标签中使用style标签声明
+				    作用： 此声明一般声明网页的公共样式或者给某个标签的单独样式 即作用与所有的相同标签
+				2.在标签上使用style属性进行声明：
+					作用： 此声明会将css样式直接作用于当前标签
+				3.在head标签中使用link标签引入外部声明好的css文件
+					作用：此声明相当于调用，解决了不同网页间样式重复使用的问题
+		
+		-->
+		<link rel="stylesheet" type="text/css" href="share.css"/>
+		<style type="text/css">
+			hr{
+				width: 50%;
+				height: 10px;
+				color: aqua;
+				background-color: red;
+			}
+			<!--就近原则显示样式-->
+		</style>
+	</head>
+	<body>
+		<h3>css的声明学习</h3>
+		<hr >
+		<hr style="background-color: black;"><!--小范围相同样式的设置会覆盖全局设置的样式-->
+		<!--对于小范围声明的样式最后执行-->
+			
+			
+			
+			
+		
+	</body>
+</html>

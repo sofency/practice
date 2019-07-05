@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>js的window的学习</title>
+		
+		<script type="text/javascript">
+			//子页面的方法
+			function  testOpen(){
+				//open("相对路径url",'打开方式','配置'）)
+				window.open('son.html',"newwindow",'height=400px,width=600px,left=320px,top=320px ,toolbar=yes,menubar=yes,scrollbars=yes,resizable=yes' );
+			}
+		    
+			//父页面
+			function testFather(){
+				alert("父页面");
+			}
+			
+			//地址栏属性学习--location
+			function testLocation(){
+				window.location.href="http://www.baidu.com";
+			}
+			
+			//历史记录属性 前进
+			function testHistory(){
+				window.history.forward();
+			}
+			//历史记录属性 后退
+			function testHistory(){
+				window.history.back();
+			}
+			//go(index)
+			function testGo(){
+				window.history.go(2);
+			}
+			
+			//屏幕属性
+			function testScreen(){
+				var x=window.screen.width;
+				var y=window.screen.height;
+				alert(x+":"+y);
+			}
+			
+		</script>
+	</head>
+	<body>
+		<input type="button" name="" id="" value="new page" onclick="testOpen()" />
+		<input type="button" name="" id="" value="测试地址栏属性" onclick="testLocation()" />
+		
+		<input type="button" name="" id="" value="屏幕属性" onclick="testScreen()" />
+		
+	</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			姓：<input type="text" placeholder="First Name" v-model="firstName"/><br><!--v-modul是为了锁定在data中的数据-->
+			名：<input type="text" placeholder="Last Name"  v-model="LastName"/><br>
+			姓名1（1）：<input type="text" placeholder="fullName" v-model="fullName" /><br>
+			姓名2（单向）：<input type="text" placeholder="fullName2" v-model="fullName2" /><br>
+			姓名（双向）：<input type="text" placeholder="fullName3" v-model="fullName3">
+		</div>
+		
+		<script type="text/javascript" src="../js/vue.js"></script>
+		<script type="text/javascript">
+			const vm=new Vue({//严格大小写
+				el:'#app',
+				data:{
+					firstName:'sofency',
+					LastName:'alice',
+				},
+				//计算属性的返回值  计算属性就是检测元素的变化
+				computed:{
+					fullName(){//方法的返回值作为属性值
+						return this.firstName+' '+this.LastName
+					},
+					fullName2(){//方法的返回值作为属性值
+						return this.firstName+' '+this.LastName
+					},
+					//回调函数
+					//1.你定义的 2.你没有调用 3. 但最终执行了
+					//当需要读取当前属性值时回调，计算并返回当前属性的值
+					
+					fullName3:{
+						get(){
+							return this.firstName+' '+this.LastName
+						},
+						
+						set(value){//获取的是字符串
+							const names=value.split(' ')//将值用空格分割开
+							this.firstName=names[0]
+							this.LastName=names[1]
+						}
+					}
+					
+					
+				},
+				
+				watch:{//配置监视
+					firstName:function(value){
+						this.fullName2= value+' '+this.LastName
+					},
+					// LastName:function(value){
+					// 	this.fullName2= this.LastName+''+value
+					// },
+					
+				}
+			})
+			//外部监视
+			vm.$watch('LastName',function(value){
+				this.fullName2=this.LastName+' '+value
+			})
+		
+		</script>
+	</body>
+</html>

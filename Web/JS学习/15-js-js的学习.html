@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>js的事件机制学习二</title>
+		
+		<!--js的事件机制学习2
+			给合适的html 标签添加合适的事件
+			  onchange-----select下拉框
+			  onload------body标签
+			  单双击-----用户会执行的鼠标移动操作
+			  键盘事件-----用户会进行键盘操作的html元素
+		-->
+		<script type="text/javascript">
+			
+			//单击事件
+			function  testOnClick(){
+				alert("我是单击");
+			}
+			//测试双击
+			function testOndbClick(){
+				alert("测试双击");
+			}
+			function testOnchange(){
+				alert("我的值被改变了");
+			}
+			
+			//事件的阻断
+			function testA(){
+				alert("事件被阻断了");
+				return false;//用判断语句中看是否页面中的所有元素都能加载出来 都能加载出来则返回true 
+				//否则返回false 将时间阻断
+			}
+			
+			//调用js的事件
+			function testB(){
+				alert("js调用事件的调用");
+			}
+					
+			</script>
+		
+		
+	</head>
+	<body>
+		<h3>js的事件学习2</h3>
+		<hr >
+		值修改事件：<input type="text" name="" id="" value="" onchange="test"/>
+		
+		<hr>
+		<br>
+		<select name="" id="" onchange="testOnchange()">
+			<option value="">河南</option>
+			<option value="">南阳</option>
+			<option value="">吴婷</option>
+		</select>
+		
+		<br>
+		<hr >
+		事件的冲突：<br>
+		<input type="button" name="" id="" value="事件的响应" onclick="testOnClick()" ondblclick="testOndbClick()" /><!--事件的冲突-->
+	
+		<br>
+		<hr >
+		事件的阻断<br>
+		<a href="http://www.baidu.com" target="_blank" onclick="return testA()">百度一下</a>
+		
+	    <hr >
+		超链接调用js函数： 
+		<!--适用于点击事件的响应处理-->
+		<a href="javascript:testB()">调用js函数</a>
+	
+	</body>
+</html>

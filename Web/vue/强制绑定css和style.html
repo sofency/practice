@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			.aclass{
+				color: red;
+			}
+			.bclass{
+				color: blue;
+				font-size: 20px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			
+			<h2>1.Class的绑定</h2>
+			<p :class="a">sofency</p><!--a代表的是data中的数据key 然后根据数据a找到对应的value-->
+			<button @click="update">更新</button>
+			<p :class="{aclass:isA,bclass:isB}">alice</p>
+			<p :class="['aclass','bclass']">xxx是数组</p>
+			
+			<p>2.style的绑定</p>
+			<p :style="{color:activeColor,fontSize:fontSize+'px'}">ahoj.cc</p>
+			<button @click="update1">更新</button>
+		</div>
+		<script type="text/javascript" src="../js/vue.js"></script>
+		<script type="text/javascript" >
+			new Vue({
+				el:'#app',
+				data:{
+					a:'aclass',
+					c:'cclass',
+					isA:true,
+					isB:false,
+					activeColor:'red',
+					activeFont:20
+				},
+				methods:{
+					update(){
+						this.a='bclass'
+					},
+					update1(){//更新里面要写直等号
+						this.c='cclass'
+						this.activeColor='blue'
+						this.fontSize=30
+					}
+					
+				}
+			})
+			
+		</script>
+	</body>
+</html>

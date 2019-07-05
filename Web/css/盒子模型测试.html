@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>测试盒子模型</title>
+		<style type="text/css">
+			
+			div{
+				width: 100px;
+				height: 100px;
+				margin: auto;
+			}
+			#header,#footer{
+				width: 250px;
+				margin-top: 10px;
+			}
+			
+			
+			#t1{
+				border: 1px solid red;
+				float: left;
+				margin-right: 10px;
+			}
+			#t2{
+				border: 1px solid red;
+				float: left;/*紧挨着进行排布*/
+			}
+			#t3{
+				border: 1px solid red;
+				margin-right: 10px;
+				float: left;
+			}
+			#t4{
+				border: 1px solid red;
+				float: left;
+			}
+		
+		</style>
+		
+		
+		
+	</head>
+	<body>
+		<div id="header">
+			<div id="t1">
+				123
+			</div>
+			<div id="t2">
+				456
+			</div>
+		</div>
+		<div id="footer">
+			<div id="t3">
+				789
+			</div>
+			<div id="t4">
+				010
+			</div>
+		</div>
+			
+	</body>
+</html>
