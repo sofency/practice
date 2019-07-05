@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>归还</title>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            var url=window.location.href;
+            var account=url.split("?")[1].split("=")[1];//获取账号信息
+            $.get("rentPerson",//展示借阅的书籍
+                {
+                    "account":account
+                },//将账户传送到后台服务器
+                function(data){
+                    if(data!=""){
+                        var books=data.split(";");
+                        for(var i=0;i<books.length;i++){
+                            var books=data.split(";");
+                            for(var i=0;i<books.length;i++) {
+                                var book = books[i].split(",");
+                                var str = "<tr onclick='returnBook(this)'><td>" + book[0] + "</td><td>" + book[1] +
+                                    "</td><td>" + book[2] + "</td><td>" + book[3] +
+                                    "</td><td>" + book[4] + "</td>" +
+                                    "<td style='text-align: center;border: 1px solid gray;background-color: aquamarine'>" +
+                                    "<input type='button' value='归还'></td></tr>";
+
+                                $("#addShow").append(str);
+                            }
+                        }
+                    }else{
+                        $("#showReturn").html("你暂时没有借书快去借书充实自己吧");
+                        $("#showReturn").css({
+                            "font-size":"40px",
+                            "color":"red"
+                        });
+                        $("#showReturn").hide(1000);
+                        $("#showReturn").show(1000);
+                        $("#showReturn").fadeOut(1000);
+                        $("#showReturn").show(1000);
+
+
+                    }
+                }
+            );
+        });
+        function returnBook(id) {
+            var url=window.location.href;
+            var account=url.split("?")[1].split("=")[1];//获取账号信息
+            var bookId= id.getElementsByTagName("td")[0].innerText;//获取书的编号
+            $.get({
+                type:"post",
+                url:"fine",
+                async:true,
+                data:{
+                    "account":account,//账号信息
+                    "bookId":bookId //书的编号
+                },
+                success:function (data) {
+                    if(data >0){
+                        alert("你需要交纳罚款"+data+"元");
+                        alert("还书成功");
+                    }if(data==0){
+                        alert("还书成功")
+                    }else{
+                        alert("还书故障")
+                    }
+
+                }
+            });
+
+            $(function(){
+                var url=window.location.href;
+                var account=url.split("?")[1].split("=")[1];//获取账号信息
+                $.get("rentPerson",//展示借阅的书籍
+                    {
+                        "account":account
+                    },//将账户传送到后台服务器
+                    function(data){
+                        if(data!=""){
+                            var books=data.split(";");
+                            for(var i=0;i<books.length;i++){
+                                var books=data.split(";");
+                                for(var i=0;i<books.length;i++) {
+                                    var book = books[i].split(",");
+                                    var str = "<tr onclick='returnBook(this)'><td>" + book[0] + "</td><td>" + book[1] +
+                                        "</td><td>" + book[2] + "</td><td>" + book[3] +
+                                        "</td><td>" + book[4] + "</td>" +
+                                        "<td style='text-align: center;border: 1px solid gray;background-color: aquamarine'>" +
+                                        "<input type='button' value='归还'></td></tr>";
+
+                                    $("#addShow").append(str);
+                                }
+                            }
+                        }else{
+                            $("#showReturn").html("你暂时没有借书快去借书充实自己吧");
+                            $("#showReturn").css({
+                                "font-size":"40px",
+                                "color":"red"
+                            });
+                            $("#showReturn").hide(1000);
+                            $("#showReturn").show(1000);
+                            $("#showReturn").fadeOut(1000);
+                            $("#showReturn").show(1000);
+
+
+                        }
+                    }
+                );
+            });
+        }
+    </script>
+
+    <style>
+        body{
+            background-color: #e7e7e7;
+        }
+        #returnBook{
+            position: absolute;
+            top: 10%;
+            left: 20%;
+            border: 1px solid black;
+            background-color: #F7F7F7;
+            width: 1200px;
+            height: 800px;
+            border-radius: 10px;
+        }
+
+        #rentedBook{
+            position: relative;
+            text-align: center;
+            border: 1px solid black;
+        }
+        tr{
+            height: 30px;
+        }
+        td{
+            width: 90px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+<div id="returnBook">
+    <h3>选择借阅的书籍归还</h3>
+    <div id="showRentBook">
+
+        <table id="rentedBook">
+            <thead>
+            <tr id="head">
+                <td>图书编号</td>
+                <td style="width: 140px">书名</td>
+                <td>作者</td>
+                <td>借书日期</td>
+                <td>应还日期</td>
+                <td>选择</td>
+            </tr>
+            </thead>
+            <tbody id="addShow"></tbody>
+        </table>
+    </div>
+    <span id="showReturn"></span>
+</div>
+
+
+
+</body>
+</html>

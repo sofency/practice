@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>图书管理系统</title>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.js"></script>
+    <script type="text/javascript">
+        function login(){
+            var account=$("#account").val();//获取账号
+            var password=$("#pwd").val();//获取密码
+            var xhr=new XMLHttpRequest();//创建连接
+            var Account="";
+            //回调函数
+            xhr.onreadystatechange=function(){
+                if(xhr.readyState==4&&xhr.status==200){//表示接收到请求
+                    var data=xhr.responseText;
+                    if(data=="ok"){
+                        console.log("欢迎来到静态网页");
+                        alert("welcome to student");
+                        window.location.href="book.html?Account="+account;
+                    }else{
+                        $("#showWrong").html("用户名或者密码错误");
+                        $("#showWrong").css({
+                            "position":"relative",
+                            "font-size":"12px",
+                            "color":"red"
+                        })
+                    }
+                }
+            };
+            xhr.open("post","index",true);
+            xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded;charset=utf-8");
+            xhr.send("account="+account+"&password="+password);//发送请求
+        }
+    </script>
+    <style>
+        body{
+            background-color: #e7e7e7;
+        }
+        #show{
+            position: absolute;
+            top: 30%;
+            left: 30%;
+            height: 500px;
+            width: 900px;
+            border: 1px solid black;
+            border-radius: 10px;
+            background-color: #f7f7f7;
+        }
+        #head{
+            height: 80px;
+            width: 100%;
+        }
+        h1{
+            margin-top: 15px;
+            font-family:华文彩云 ;
+            font-size: 45px;
+            text-align: center;
+            letter-spacing: 20px;
+        }
+        #login{
+            position: relative;
+            top: 10%;
+            left: 30%;
+            height: 250px;
+            width: 400px;
+            border: 1px solid black;
+            border-radius: 10px;
+            background-color: white;
+        }
+        #info{
+            position: relative;
+            top:20%;
+            left: 3%;
+            text-align: center;
+        }
+        #prompt{
+            font-size: 25px;
+            margin-right:10px ;
+        }
+        #account{
+            height: 20px;
+            font-size: 20px;
+        }
+        #pwd{
+            height: 20px;
+            font-size: 20px;
+        }
+        #loginIdentify{
+            position: relative;
+            top: 10px;
+        }
+        #submit{
+            height: 30px;
+            width: 200px;
+            background: none;
+            border: 1px solid black;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+<div id="show">
+    <div id="head">
+        <h1>图书管理系统</h1>
+    </div>
+    <div id="login">
+        <div id="info">
+            <label id="prompt">账户:</label><input type="text" name="account" id="account" placeholder="请输入账户" /><br>
+            <label id="prompt">密码:</label><input type="password" name="pwd" id="pwd" placeholder="请输入密码" /><br>
+            <span id="showWrong"></span><br>
+            <div id="loginIdentify">
+                学生<input type="radio" name="identify" id="identify" value="0"/>
+                管理员<input type="radio" name="identify" id="identify" value="1"/>
+            </div><br>
+            <input type="button" name="submit" id="submit" value="登录"  onclick="login()"/>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

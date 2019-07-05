@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>借阅</title>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            var url=window.location.href;
+            var account=url.split("?")[1].split("=")[1];//获取账号信息
+            $.get("rentPerson",
+                {
+                    "account":account
+                },//将账户传送到后台服务器
+                function(data){
+                    if(data!="") {
+                        var books = data.split(";");
+                        for (var i = 0; i < books.length; i++) {
+                            var book = books[i].split(",");
+                            var str = "<tr><td>" + book[0] + "</td><td>" + book[1] + "</td><td>" + book[2] + "</td><td>" + book[3] + "</td><td>" + book[4] + "</td></tr>";
+                            $("#addShow").append(str);
+                        }
+                    }
+                    else{
+                        $("#noBook").html("你还没有借书")
+                    }
+                }
+
+            );
+        });
+
+        //设置刷新
+        function Reload() {
+            window.location.reload(true)
+        }
+        //根据书名查找
+        function searchByBookName() {
+            var bookName=$("#bookName").val();//获取书名
+            //将书名传向数据库
+            $.ajax({
+                type:"post",
+                url:"findByBookName",
+                async:true,
+                data:{
+                    "bookName":bookName
+                },
+                dataType:"text",
+                success:function(data){//拿到数据进行处理
+                    $("#showMessage").html("");//清除之前的记录
+                    $("#allBook").html("");
+                    if(data!="") {
+                        var book = data.split(",");
+                        var str = "<tr onclick='rentBook(this)'><td>" + book[0] + "</td><td>" + book[1] +
+                            "</td><td>" + book[2] + "</td><td>" + book[3] +
+                            "</td><td>" + book[4] + "</td><td>" + book[5] +
+                            "</td><td>" + book[6] + "</td><td style='text-align: center;border: 1px solid gray;background-color: aquamarine'><input type='button' value='借阅'></td></tr>";
+                        $("#allBook").append(str);
+                    }else{
+                        $("#allBook").html("");
+                        $("#showMessage").html("图书馆暂无该书籍");
+                        $("#showMessage").css({
+                            "font-size":"40px",
+                            "color":"red"
+                        });
+                        $("#showMessage").hide(1000);
+                        $("#showMessage").show(1000);
+                        $("#showMessage").fadeOut(1000);
+                        $("#showMessage").show(1000);
+                    }
+                }
+            })
+        }
+        //根据作者查找
+        function searchByAuthor() {
+
+            var author=$("#Author").val();//获取作者的姓名
+            $.ajax({
+                type:"post",
+                url:"findByAuthor",
+                async:true,
+                data:{
+                    "author":author
+                },
+                dataType:"text",
+                success:function (data) {//获取数据
+                    $("#allBook").html("");
+                    $("#showMessage").html("");
+                    if(data!="") {
+                        var books = data.split(";");
+                        for (var i = 0; i < books.length; i++) {
+                            var book = books[i].split(",");
+                            //拼接字符串
+                            var str = "<tr onclick='rentBook(this)'><td>" + book[0] + "</td><td>" + book[1] +
+                                "</td><td>" + book[2] + "</td><td>" + book[3] +
+                                "</td><td>" + book[4] + "</td><td>" + book[5] +
+                                "</td><td>" + book[6] + "</td><td style='text-align: center;border: 1px solid gray;background-color: aquamarine'><input type='button' value='借阅'></td></tr>";
+                            $("#allBook").append(str);
+                        }
+                    }else{
+                        $("#allBook").html("");
+                        $("#showMessage").html("无该作者的书籍");
+                        $("#showMessage").css({
+                            "font-size":"40px",
+                            "color":"red"
+                        });
+                        $("#showMessage").hide(1000);
+                        $("#showMessage").show(1000);
+                        $("#showMessage").fadeOut(1000);
+                        $("#showMessage").show(1000);
+                    }
+
+                }
+            })
+        }
+        //借书
+        function rentBook(fun) {
+            var bookId=fun.getElementsByTagName("td")[0].innerText;
+            //alert(fun.$($("tr td")[0]).text())
+            //alert(fun.previousSibling)
+            //获取书的编号
+            var url=window.location.href;
+            var account=url.split("?")[1].split("=")[1];//获取账号信息
+            $.ajax({
+                type:"post",
+                url:"rent",
+                async:true,
+                data:{
+                    "bookId":bookId,
+                    "account":account
+                },
+                dataType:"text",
+                success:function (data) {
+                    var str="";
+                    $("#showMessage").css({
+                        "color":"red",
+                        "border":"1px solid red",
+                        "height":"50px",
+                        "width":"100px"
+                    });
+                    switch (data){
+                        case "0":str="图书馆无该藏书";break;
+                        case "1":str="你已经达到最大的借书量请先还书";break;
+                        case "2":str="借书成功";break;
+                        case "3":str="借书失败";break;
+                    }
+
+                    $("#showMessage").html(str);
+                }
+            })
+        }
+        //按类型查找
+        function searchByIdentify() {
+
+            var identify=$("#identify").val();//获取作者的姓名
+            $.ajax({
+                type:"post",
+                url:"findByIdentify",
+                async:true,
+                data:{
+                    "identify":identify
+                },
+                dataType:"text",
+                success:function (data) {//获取数据
+                    $("#allBook").html("");
+                    $("#showMessage").html("");
+                    if(data!="") {
+                        var books = data.split(";");
+                        for (var i = 0; i < books.length; i++) {
+                            var book = books[i].split(",");
+                            //拼接字符串
+                            var str = "<tr onclick='rentBook(this)'><td>" + book[0] + "</td><td>" + book[1] +
+                                "</td><td>" + book[2] + "</td><td>" + book[3] +
+                                "</td><td>" + book[4] + "</td><td>" + book[5] +
+                                "</td><td>" + book[6] + "</td><td style='text-align: center;border: 1px solid gray;background-color: aquamarine'><input type='button' value='借阅'></td></tr>";
+                            $("#allBook").append(str);
+                        }
+                    }else{
+                        $("#allBook").html("");
+                        $("#showMessage").html("无类型的书籍");
+                        $("#showMessage").css({
+                            "color":"red",
+                            "border":"1px solid red",
+                            "height":"50px",
+                            "width":"100px"
+                        });
+                    }
+                }
+            });
+        }
+        $("button").click(function () {
+            setTimeout('Reload()')
+        })
+    </script>
+    <style type="text/css">
+        body{
+            background-color: #FFFFFF;
+        }
+        #showText{
+            position: absolute;
+            top: 10%;
+            left: 20%;
+            border: 1px solid black;
+            background-color: #F7F7F7;
+            width: 1200px;
+            height: 800px;
+            border-radius: 10px;
+        }
+        #tableShow{
+            position: relative;
+        }
+        #rentedBook{
+            position: relative;
+            text-align: center;
+            border: 1px solid black;
+        }
+        tr{
+            height: 30px;
+        }
+        td{
+            width: 90px;
+            border: 1px solid black;
+        }
+
+        #searchResult{
+            border: 1px solid black;
+        }
+        #showBook{
+            width: 80%;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+<div id="showText">
+    <div id="show" >
+        <h3>下面是你已经借阅的书籍</h3>
+        <span id="noBook"></span>
+    </div>
+    <div id="tableShow">
+        <table id="rentedBook">
+            <thead>
+            <tr id="head">
+                <td>图书编号</td>
+                <td style="width: 140px">书名</td>
+                <td>作者</td>
+                <td>借书日期</td>
+                <td>应还日期</td>
+            </tr>
+            </thead>
+            <tbody id="addShow"></tbody>
+        </table>
+    </div>
+
+    <div>
+        <h3>请选择查询类型</h3>
+        <ul>
+            <li>
+                <nobr>按书名查找&nbsp;&nbsp;</nobr><input  id="bookName" type="text" placeholder="请输入书名" >
+                <input  id="searchByBookName" type="button" value="查询" onclick="searchByBookName()">
+            </li>
+            <li>
+                <nobr>按作者查找&nbsp;&nbsp;</nobr><input id="Author" type="text" placeholder="请输入作者">
+                <input id="searchByAuthor" type="button" value="查询" onclick="searchByAuthor()">
+            </li>
+            <li>
+                <nobr>按类型查找&nbsp;&nbsp;</nobr><input id="identify" type="text" placeholder="请输入类型">
+                <input id="searchByIdentify" type="button" value="查询" onclick="searchByIdentify()">
+            </li>
+        </ul>
+    </div>
+    <div>
+        搜索的书籍如下 <span id="showMessage"></span><br><br>
+        <div id="showBook">
+            <table id="searchResult">
+                <thead id="headSearch">
+                <tr>
+                    <td>编号</td>
+                    <td style="width: 140px">书名</td>
+                    <td>储藏位置</td>
+                    <td>总数量</td>
+                    <td>剩余数量</td>
+                    <td>类型</td>
+                    <td>作者</td>
+                    <td>选择</td>
+                </tr>
+                </thead>
+                <tbody id="allBook"></tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>

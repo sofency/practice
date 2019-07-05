@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>book</title>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.js"></script>
+    <script type="text/javascript">
+        function rent(){
+            var url=window.location.href;
+            var account=url.split("?")[1].split("=")[1];//获取到账号
+            var Account="";
+           window.location.href="rent.html?Account="+account;
+        }
+        function retu(){
+            var url=window.location.href;
+            var account=url.split("?")[1].split("=")[1];//获取到账户
+            var Account="";
+            window.location.href="retu.html?Account="+account;
+        }
+    </script>
+    <style>
+        body{
+            background-color: #FFFFFF;
+        }
+        #showOption{
+            position: absolute;
+            background-color: #F7F7F7;
+            top: 25%;
+            left: 35%;
+            border: 1px solid black;
+            height: 600px;
+            width: 900px;
+            border-radius:10px ;
+        }
+        #option{
+            position: relative;
+            border: 1px solid black;
+            border-radius: 10px;
+            background-color: #E7E7E7;
+            height: 120px;
+            width: 240px;
+            margin-top: 120px;
+            left: 330px;
+        }
+        h1{
+            position: relative;
+            font-family: 华文彩云;
+            top: -10px;
+            font-size: 60px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div id="showOption">
+    <div id="option" onclick="rent()">
+        <h1>借阅</h1>
+    </div>
+    <div id="option" onclick="retu()">
+        <h1>归还</h1>
+    </div>
+</div>
+</body>
+</html>

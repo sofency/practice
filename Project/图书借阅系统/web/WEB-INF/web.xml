@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+    <servlet>
+        <servlet-name>index</servlet-name>
+        <servlet-class>top.sofency.servlet.indexServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>index</servlet-name>
+        <url-pattern>/index</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>rentPerson</servlet-name>
+        <servlet-class>top.sofency.servlet.rentServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>rentPerson</servlet-name>
+        <url-pattern>/rentPerson</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>findByBookName</servlet-name>
+        <servlet-class>top.sofency.servlet.findByBookNameServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>findByBookName</servlet-name>
+        <url-pattern>/findByBookName</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>findByAuthor</servlet-name>
+        <servlet-class>top.sofency.servlet.findByAuthorServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>findByAuthor</servlet-name>
+        <url-pattern>/findByAuthor</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>findByIdentify</servlet-name>
+        <servlet-class>top.sofency.servlet.findByIdentifyServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>findByIdentify</servlet-name>
+        <url-pattern>/findByIdentify</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>rent</servlet-name>
+        <servlet-class>top.sofency.servlet.rentBookservlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>rent</servlet-name>
+        <url-pattern>/rent</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>fine</servlet-name>
+        <servlet-class>top.sofency.servlet.fineServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>fine</servlet-name>
+        <url-pattern>/fine</url-pattern>
+    </servlet-mapping>
+
+
+</web-app>
