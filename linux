@@ -1,0 +1,40 @@
+Basic realization  of linux
+1. replace the root catalog with '/'
+2. 'bin' catalog usually  keep programs
+3. 'boot' catalog  is the home of some files starting up the system
+4. 'cdrom' catalog  is kind of memory recorder(存储器)
+5. 'etc'  服务器配置的地方  the place of configing the server 
+6. 'lib'  库
+7. 'home'  存储用户的地方,即多用户存储文件的根目录 
+
+
+Practice basic order to control the operation system of linux
+tree --the structure of root catalog
+[命令]  [选项]   [参数]
+
+
+文件名若以 . 开头则说明是隐藏文件  
+以  ls -a 显示所有文件
+ls -l 显示的文件是以列表的形式显示的
+ls -l -h  以合适的单位显示文件的大小
+选项可以重叠放
+ls -lah 显示所有文件并且显示每个文件的大小
+
+
+1. ls  --show files of current path
+   ls  /bin   显示bin目录下的文件
+2. pwd --show absolute path
+3. touch --在当前目录新建文件
+4. vi --进入文件进行操作   输入i 进行编辑 按esc退出编辑 :wq 保存退出 
+5. man 命令 查看命令的帮助    q退出
+6. 命令tab自动补全
+7. 查看文件里面的内容  
+   cat 文件名 只能查看 不能修改 
+   gedit 文件名 窗口打开文件
+8. history 记录linux中执行过的命令 
+9. 执行记录过程中的命令  !13 执行第13次输入的命令
+10. rm 删除命令    rm  文件名 删除文件
+11. 删除一系列文件 rm 2*  删除以2开始的文件  通配符*  
+12. ?   eg 33   ls 3?3 即显示以3开头以3结尾的未知文件类型的文件
+13. ls 1[1-5]4.txt   ls 1[12345]3.txt
+14.重定向  ls > XXX.txt   即将前一个动作执行的结果存储到后一个文件中
