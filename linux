@@ -45,5 +45,81 @@ ls -lah 显示所有文件并且显示每个文件的大小
 17. 管道的学习 |        ls -alh /bin | more     两个命令 前面的命令产生的结果存储在管道|中 more的作用对象就是|
 18. cd ../..  相对路径跳转     cd /home/Desktop/ 绝对路径进行跳转 
 
+19. mkdir    mkdir A/B/C/D  -p 优先创建依赖的文件夹 
+20.rmdir 删除空的dir
+21. 删除文件时使用rm时 应该  rm 文件 -r 删除文件夹或者文件
+
+22.连接 
+修改文件名： mv  源文件名(文件) 新文件名(文件)
+创建软连接   ln -s 1.txt(源文件)  1.softlink.txt(软连接文件名)
+这样就可以通过cat  1.softlink.txt 进行查看 1.txt文件的内容了  删除源文件之后 软连接失去作用
+
+23.硬链接就是在文件内容上面的标签数   而软连接就是间接的作为源文件的链接
+ln 1.txt 1.hardlink.txt  //创建硬链接
+
+24.grep 搜索字符   grep "ntfds"  文件名    在文件夹中查找带ntfds字符的文件  若使用ntfds的话 加上^ntfds的话必须以ntfds开头
+grep -v  "ntfds"  文件名    查找不包含ntfds的文件
+
+
+25. mv  11.txt laowang/ 将11.txt 移动到老王文件夹上  对应的是剪切
+26 cp 文件  文件  -r   对应的是复制粘贴到特定的文件夹
+
+
+27.find 查找  功能强大  能从路径下查找文件
+find /tmp  -name  name   从tmp下按名字查找那么文件  name可以和通配符连用
+find /tmp  -size  大小  根据文件大小进行查找
+
+
+28.文件的打包
+tar -cvf  test.tar  目标压缩文件       会显示将什么文件打包到tar文件里面
+压缩打包  tar -zcvf  test.tar.gz
+
+解包 tar -xvf test.tar
+加压 tar -zxvf test.tar.gz        -C   文件夹
+
+zip的压缩
+zip zz.zip  *.py
+upzip zz.zip      -d 制定路径
+
+日历
+cal 
+cal 2008
+日期
+date 显示当前日期
+%Y年 %m月 %d天        
+
+进程 
+查看进程 ps -aux
+top
+htop
+查看当前进程情况
+
+杀死进程
+kill -9 进程号
+
+关机 shutdown -h 时间
+init 5 
+reboot
+
+df -h  显示存储容量
+du -h  显示当前路径使用情况
+
+ipconfig 查看IP
+
+linux
+exit退出当前账户
+useradd 账户名字 -m
+passwd 账户  设置密码
+/home 下查看用户
+/etc/passwd/查看是否用户已经创建 最后一行
+
+whomai 查看当前用户
+userdel 用户名
+
+
+
+
+
+
 
 
