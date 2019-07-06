@@ -1,0 +1,125 @@
+Basic realization  of linux
+1. replace the root catalog with '/'
+2. 'bin' catalog usually  keep programs
+3. 'boot' catalog  is the home of some files starting up the system
+4. 'cdrom' catalog  is kind of memory recorder(存储器)
+5. 'etc'  服务器配置的地方  the place of configing the server 
+6. 'lib'  库
+7. 'home'  存储用户的地方,即多用户存储文件的根目录 
+
+
+Practice basic order to control the operation system of linux
+tree --the structure of root catalog
+[命令]  [选项]   [参数]
+
+
+文件名若以 . 开头则说明是隐藏文件  
+以  ls -a 显示所有文件
+ls -l 显示的文件是以列表的形式显示的
+ls -l -h  以合适的单位显示文件的大小
+选项可以重叠放
+ls -lah 显示所有文件并且显示每个文件的大小
+
+
+1. ls  --show files of current path
+   ls  /bin   显示bin目录下的文件
+2. pwd --show absolute path
+3. touch --在当前目录新建文件
+4. vi --进入文件进行操作   输入i 进行编辑 按esc退出编辑 :wq 保存退出 
+5. man 命令 查看命令的帮助    q退出
+6. 命令tab自动补全
+7. 查看文件里面的内容  
+   cat 文件名 只能查看 不能修改 
+   gedit 文件名 窗口打开文件
+8. history 记录linux中执行过的命令 
+9. 执行记录过程中的命令  !13 执行第13次输入的命令
+10. rm 删除命令    rm  文件名 删除文件
+11. 删除一系列文件 rm 2*  删除以2开始的文件  通配符*  
+12. ?   eg 33   ls 3?3 即显示以3开头以3结尾的未知文件类型的文件
+13. ls 1[1-5]4.txt   ls 1[12345]3.txt
+
+14.重定向  ls > XXX.txt   即将前一个动作执行的结果存储到后一个文件中  覆盖
+15. ls >> XXX.txt 即将要加的内容追加到xxx.txt下
+
+16.cat 和more的区别  cat  一下全部显示文件  more 是按%比的形式 从头开始显示（分屏显示是文件内容）按F进行分页查看 
+17. 管道的学习 |        ls -alh /bin | more     两个命令 前面的命令产生的结果存储在管道|中 more的作用对象就是|
+18. cd ../..  相对路径跳转     cd /home/Desktop/ 绝对路径进行跳转 
+
+19. mkdir    mkdir A/B/C/D  -p 优先创建依赖的文件夹 
+20.rmdir 删除空的dir
+21. 删除文件时使用rm时 应该  rm 文件 -r 删除文件夹或者文件
+
+22.连接 
+修改文件名： mv  源文件名(文件) 新文件名(文件)
+创建软连接   ln -s 1.txt(源文件)  1.softlink.txt(软连接文件名)
+这样就可以通过cat  1.softlink.txt 进行查看 1.txt文件的内容了  删除源文件之后 软连接失去作用
+
+23.硬链接就是在文件内容上面的标签数   而软连接就是间接的作为源文件的链接
+ln 1.txt 1.hardlink.txt  //创建硬链接
+
+24.grep 搜索字符   grep "ntfds"  文件名    在文件夹中查找带ntfds字符的文件  若使用ntfds的话 加上^ntfds的话必须以ntfds开头
+grep -v  "ntfds"  文件名    查找不包含ntfds的文件
+
+
+25. mv  11.txt laowang/ 将11.txt 移动到老王文件夹上  对应的是剪切
+26 cp 文件  文件  -r   对应的是复制粘贴到特定的文件夹
+
+
+27.find 查找  功能强大  能从路径下查找文件
+find /tmp  -name  name   从tmp下按名字查找那么文件  name可以和通配符连用
+find /tmp  -size  大小  根据文件大小进行查找
+
+
+28.文件的打包
+tar -cvf  test.tar  目标压缩文件       会显示将什么文件打包到tar文件里面
+压缩打包  tar -zcvf  test.tar.gz
+
+解包 tar -xvf test.tar
+加压 tar -zxvf test.tar.gz        -C   文件夹
+
+zip的压缩
+zip zz.zip  *.py
+upzip zz.zip      -d 制定路径
+
+日历
+cal 
+cal 2008
+日期
+date 显示当前日期
+%Y年 %m月 %d天        
+
+进程 
+查看进程 ps -aux
+top
+htop
+查看当前进程情况
+
+杀死进程
+kill -9 进程号
+
+关机 shutdown -h 时间
+init 5 
+reboot
+
+df -h  显示存储容量
+du -h  显示当前路径使用情况
+
+ipconfig 查看IP
+
+linux
+exit退出当前账户
+useradd 账户名字 -m
+passwd 账户  设置密码
+/home 下查看用户
+/etc/passwd/查看是否用户已经创建 最后一行
+
+whomai 查看当前用户
+userdel 用户名
+
+
+
+
+
+
+
+

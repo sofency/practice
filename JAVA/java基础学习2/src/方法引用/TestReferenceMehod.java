@@ -1,14 +1,14 @@
-package ·½·¨ÒıÓÃ;
+package æ–¹æ³•å¼•ç”¨;
 
 public class TestReferenceMehod {
 	public static void main(String[] args) {
 		double max=getMax(Math::pow, 2, 2);
 		System.out.println(max);
 		
-		//int get=divi(testInterfece::divide, 10, 5); Ä¿±êÀàĞÍ±ØĞëÊÇÒ»¸ö¹¦ÄÜ½Ó¿Ú
+		//int get=divi(testInterfece::divide, 10, 5); ç›®æ ‡ç±»å‹å¿…é¡»æ˜¯ä¸€ä¸ªåŠŸèƒ½æ¥å£
 	}
 	
-	public static double getMax(Comput com,int x,int y) {
+	public static double getMax(Comput com,int x,int y) {//Comput com æ˜¯å€Ÿå£
 		return com.pow(x, y);
 	}
 	
