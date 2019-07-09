@@ -16,8 +16,6 @@ public class CreateFile5 {
 		countFIle file=new countFIle("H:\\eclipse_workspace\\IO学习开篇");
 		System.out.println(file.getSize());
 		
-		
-		
 		countFIle file1=new countFIle("H:\\eclipse_workspace\\IO学习开篇\\src");
 		System.out.println(file1.getSize());//统计该文件的大小
 		System.out.println(file1.getNumFile());//统计该文件下文件的数目

@@ -30,9 +30,6 @@ public class CreateFile3 {
 				Print(f,deep+1);
 			}
 		}
-		
-		
-		
 	}
 
 }
