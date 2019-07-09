@@ -14,7 +14,7 @@ public class ContentCode {
 		//解码：将字节转化为字符	
 //		msgString=new String(datas,0,9,"utf8");
 //		System.out.println(msgString);
-		msgString=new String(datas,0,datas.length,"utf8");
+		msgString=new String(datas,0,datas.length-4,"utf8");
 		System.out.println(msgString);
 		
 		
