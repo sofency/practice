@@ -1,7 +1,9 @@
 package 并发;
 
 /**
- * 线程不安全的理解  数据有负数  数据出现相同
+ * 线程安全的理解  数据有负数  数据出现相同
+ * 锁的范围越大性能越差  锁的范围小  可能锁不住    因此锁住合理的范围（数据的完整性
+ * ）
  * @author sofency
  *
  */
@@ -26,23 +28,32 @@ class SynTestFirst implements Runnable{
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
-		synchronized (this) {
-			while (flag) {
-				if(ticketsNum<0) {
-					flag=false;
-					break;
-				}
-				//模拟延迟
-				try {
-					Thread.sleep(200);//在延迟的过程中资源也被其他的给复制了  所以导致不安全
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				System.out.println(Thread.currentThread().getName()+"--->"+ticketsNum--);			
-			}
+		//双重检测
+		if(ticketsNum<=0) {
+			flag=false;
+			return;
 		}
-		
+		synchronized (this) {
+			test();
+		}
+	}
+	
+	
+	public  void  test() {
+		while (flag) {
+			if(ticketsNum<=0) {
+				flag=false;
+				return;
+			}
+			//模拟延迟
+			try {
+				Thread.sleep(200);//在延迟的过程中资源也被其他的给复制了  所以导致不安全
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			System.out.println(Thread.currentThread().getName()+"--->"+ticketsNum--);			
+		}
 	}
 	
 }

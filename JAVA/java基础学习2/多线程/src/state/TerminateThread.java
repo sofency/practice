@@ -26,11 +26,7 @@ public class TerminateThread implements Runnable{
 			}
 			System.out.println("main--->"+i);
 		}
-		
-		
-		
-		
-		
+	
 	}
 
 	@Override

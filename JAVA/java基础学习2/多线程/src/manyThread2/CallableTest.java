@@ -21,7 +21,6 @@ public class CallableTest implements Callable<Boolean>{
 	private String url;
 	private String name;
 	
-	
 	public CallableTest(String url, String name) {
 		super();
 		this.url = url;

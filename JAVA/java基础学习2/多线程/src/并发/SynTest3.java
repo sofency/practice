@@ -2,6 +2,7 @@ package 并发;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * 线程安全的理解  操作容器
@@ -13,6 +14,7 @@ public class SynTest3 {
 		
 		 List<String> list=new ArrayList<String>();
 		 
+		 //CopyOnWriteArrayList<String> list2=new CopyOnWriteArrayList<String>();//内部自动加了锁
 		 for(int i=0;i<10000;i++) {
 			 new Thread(()->{
 				 synchronized (list) {					

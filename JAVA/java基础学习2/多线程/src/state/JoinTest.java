@@ -16,6 +16,7 @@ class Father implements Runnable{
 		
 		Thread t=new Thread(new Son());
 		t.start();
+		
 		try {
 			t.join();//将儿子的线程插入到这个线程中
 		} catch (InterruptedException e) {
