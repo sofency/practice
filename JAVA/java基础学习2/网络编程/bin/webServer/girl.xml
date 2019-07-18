@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<girls>
+	<girl id="1">
+		<name>sofency</name>
+		<age>19</age>
+	</girl>
+	<girl id="2">
+		<name>alice</name>
+		<age>20</age>
+	</girl>
+</girls>

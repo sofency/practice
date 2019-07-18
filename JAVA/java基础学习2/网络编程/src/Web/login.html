@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>登录</title>
+</head>
+<body>
+	<form method="post" action="http://localhost:8888">
+		用户名：<input type="text" name="uname" id="uname"></input>
+		密码：<input type="password" name="upwd" id="upwd"></input>
+		<input type="submit"  value="登录"></input>	
+	</form>
+	<div>
+	   <p>
+	   post: 基于http协议的不同  量大 请求url不可见
+	   get:默认获取  基于http协议的不同 量小  请求参数url可见
+	   action：请求web服务器的资源
+	   name:作为后端使用请求服务器 必须存在 不存在 无法提交
+	   id  作为前端使用，区分唯一
+	   </p>
+	</div>
+</body>
+</html>
