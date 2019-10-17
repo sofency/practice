@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 引入约束 -->
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+	
+<struts>
+	<package name="uaccountdemo" extends="struts-default" namespace="/"><!-- namepspace可删就觉不能访问问题 -->
+	<!-- 针对不同行为得到同一结果返回同一界面的问题  设置全局页面 进行同一返回-->
+		<!-- <global-results>
+			<result name="success">/hello.jsp</result>
+		</global-results> -->
+		
+		
+		<action name="userRegister" class="com.sofency.action.UserAction" method="register">
+			<!-- <result name="success" type="dispatcher">/register.jsp</result> --> 
+			<!--局部页面配置  全局页面和局部页面都存在时  以局部页面为准-->
+			
+			<result name="success" type="redirectAction">userlogin</result>
+			<!-- type值为redirestAction时   里面加的是行为的名字     即用户注册完成后跳转到登录界面-->
+		</action>
+		
+		<action name="userlogin" class="com.sofency.action.UserAction" method="login">
+		<!-- type属性 --> 
+		 <!-- 默认值是请求转发的意思,请求转发的特点就是 地址栏不发生变化   type='dispatcher' -->
+		 <!--  重定向 会将地址栏的地址发生变化-->
+			 
+			 <result name="success" type="redirect">/login.jsp</result>
+		</action>
+		
+			 
+	 	<action name="loginBy" class="com.sofency.action.loginAction" ></action>
+		
+		<action name="loginByInterface" class="com.sofency.action.ClientAction">
+		<!-- type属性 --> 
+		 <!-- 默认值是请求转发的意思,请求转发的特点就是 地址栏不发生变化   type='dispatcher' -->
+		 <!--  重定向 会将地址栏的地址发生变化-->
+			 
+			 <result name="success" type="redirect">/login.jsp</result>
+		</action>
+	</package>
+
+</struts>

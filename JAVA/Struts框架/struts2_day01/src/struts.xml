@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 引入约束 -->
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+	
+<!-- action的配置 -->
+<struts>
+
+	<!-- 修改struts默认的常量值
+	1. 常用的方式    在struts.xml中进行配置  
+	2.在src下创建struts.properties 进行修改
+	3.在web.xml中进行配置
+	 -->
+	
+	<!-- 
+	  最常用的常量
+	  
+	  struts.i18n.encoding =utf-8
+	  1. 表单提交数据在action里面  在action可以获取表单提交数据
+	  2. 表单提交数据有中文  有乱码问题  解决
+	  - post 提交直接设置编码
+	  - get 提交做编码转换
+	  3. 如果在action 获取表单通过post 方式提交中文   中文乱码就解决了，不需要自己处理问题
+	  
+	  
+	  
+	-->
+	<constant name="struts.i18n.encoding" value="utf-8"></constant>
+	
+	 <!-- 分模块开发  每个人写一个xml 配置自己的行为  并通过 include引入     -->
+	
+	<include file="com/sofency/action/hello.xml"></include> 
+	
+	<include file="com/sofency/action/uaccount.xml"></include> 
+</struts>

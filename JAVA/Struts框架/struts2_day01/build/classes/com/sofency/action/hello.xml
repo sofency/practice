@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 引入约束 -->
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="hellodemo" extends="struts-default" namespace="/">
+		<!-- name 访问的名称 -->
+		<!-- <action name="hello" class="com.sofency.action.HelloAction" method="add" >
+		method="add"  
+		 里面没有对用的返回值的话 会报错       action 里面有返回值的话  而在result 里面没有配置的话会出错
+			配置方法返回值到页面  会默认执行里面的excute方法  然后根据返回值到执行的界面
+			<result name="ok">/hello.jsp</result>有返回值的处理方式   无返回值的处理方式
+		</action>	 -->
+		
+		<!-- 
+			<action name="deleteAction" class="com.sofency.action.HelloAction" method="delete" ></action>		
+		    <action name="addAction" class="com.sofency.action.HelloAction" method="add" ></action>		
+			<action name="updateAction" class="com.sofency.action.HelloAction" method="update" ></action> 
+		-->
+		<!-- 
+		此时就余姚这样一个问题  每写一个行为就要写一个action 非常麻烦     因此就用到通配符的概念
+		 -->	
+		 
+		 <!-- 通配符的使用避免多次写action -->
+		 
+		 <action name="book_*" class="com.sofency.action.HelloAction" method="{1}"></action>
+		 
+	</package>
+</struts>
