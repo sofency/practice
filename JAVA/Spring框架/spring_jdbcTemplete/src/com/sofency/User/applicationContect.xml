@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:aop="http://www.springframework.org/schema/aop" xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop 
+        http://www.springframework.org/schema/aop/spring-aop.xsd">
+        <!-- 创建数据源 -->
+        <bean id="DataSourceId" class="org.apache.commons.dbcp.BasicDataSource">
+        	<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+        	<property name="url" value="jdbc:mysql://localhost:3306/sofency?serverTimezone=UTC"></property>
+        	<property name="username" value="root"></property>
+        	<property name="password" value="19980120"></property>
+        </bean>
+        
+        <!-- 创建模板 -->
+        <bean id="jdbcTemplateId" class="org.springframework.jdbc.core.JdbcTemplate">
+        	<property name="dataSource" ref="DataSourceId"></property><!-- name的属性值是唯一的  不能变   -->
+        </bean>
+        <!-- 创建Dao -->
+     <bean  id="UserDaoId" class="com.sofency.User.TestDao">
+     	<property name="jdbcTemplate" ref="jdbcTemplateId"/>
+     </bean>
+</beans>
