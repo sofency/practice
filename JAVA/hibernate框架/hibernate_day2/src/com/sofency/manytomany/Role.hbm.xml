@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 引入约束   dtd约束 -->
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.sofency.manytomany.Role" table="Role">
+			<id name="role_id" column="role_id">
+				<generator class="native"></generator>
+			</id>
+			
+			<property name="role_level" column="role_level"></property>
+			<property name="role_desc" column="role_desc"></property>
+			<!-- 在客户映射文件中  表示所有人
+			使用set标签表示所有人
+			set标签里面的name属性
+			 属性值写在实体类中表示联系人集合的名字
+			-->
+			
+			<set name="setUser" table="user_role" cascade="save-update">
+				<key column="roleid"></key>
+				<many-to-many class="com.sofency.manytomany.User" column="userid"></many-to-many>
+			</set>
+	</class>
+	
+</hibernate-mapping>

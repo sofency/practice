@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 引入约束   dtd约束 -->
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.sofency.entity.Company" table="Company">
+			<id name="company_id" column="company_id">
+				<generator class="native"></generator>
+			</id>
+			
+			<property name="company_level" column="company_level"></property>
+			<property name="company_position" column="company_position"></property>
+			<property name="company_name" column="company_name"></property>
+			<!-- 在客户映射文件中  表示所有人
+			使用set标签表示所有人
+			set标签里面的name属性
+			 属性值写在实体类中表示联系人集合的名字
+			-->
+			<set name="setEmployee" cascade="save-update,delete">
+			<!-- lazy表示延迟加载   
+			值  false  不延迟加载
+			true  延迟加载（默认值）
+			extra  极其延迟 要什么查什么
+			批量抓取  batch-size=10  越大  处理的数据越多			
+			 -->
+				<!-- inverse  true表示放弃更新外键      false 表示不放弃修改-->
+				<!-- 一对多建表  有外键   hibernate机制  双向维护外键   在一和多那一方都配置外键   column  属性值  外键名称 -->
+				<key column="company_id"></key><!--cloumn 主键-->
+				<one-to-many class="com.sofency.entity.Employee"></one-to-many><!--对应多的实体类-->
+			</set>
+	</class>
+</hibernate-mapping>

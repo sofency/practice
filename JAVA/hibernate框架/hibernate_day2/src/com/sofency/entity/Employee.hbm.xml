@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.sofency.entity.Employee" table="Employee">
+			<id name="employee_id" column="employee_id">
+				<generator class="native"></generator>
+			</id>
+			<property name="employee_name" column="employee_name"></property>
+			<property name="employee_sex" column="employee_sex"></property>
+			<many-to-one name="Company" class="com.sofency.entity.Company" column="company_id"></many-to-one>
+			<!--对应1的实体类  cloumn 对应的是Company的主键  Employee的外键-->
+	</class>
+</hibernate-mapping>

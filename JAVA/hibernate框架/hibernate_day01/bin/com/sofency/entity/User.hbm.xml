@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 引入约束   dtd约束 -->
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<!-- 1配置类和表对应 
+	创建映射关系   
+	class  标签
+	name属性： 实体类全路径
+	table属性   数据库表名称
+	-->
+	<class  name="com.sofency.entity.User" table="t_user">
+	<!-- 配置实体类id和表id对应 
+	hibernate 要求实体类有一个属性唯一值
+	hibernate 要求表有字段作为唯一值
+	-->
+	<!-- id标签
+	name属性  实体类里面id属性名称
+	column 生成的表字段名称
+	 -->
+		
+		<id name="uid" column="uid">
+			<!-- 设置数据库id增长策略
+			native : 生成表id值就是主键自动增长
+			 -->
+			<generator class="native"></generator>
+			
+			<!-- 
+			
+			主键生成策略
+			 class  根据使用的数据库帮选择哪个值
+			 uuid   生成128为随机值作为主键 但是所占的位数比较多  一版用于作为代理主键
+			 --> 
+		</id>
+		
+		<!-- name 属性的值要和实体类的名字对应                               column  是和列对应          -->
+		<property name="username" column="username"></property>
+		<property name="upassword" column="upassword"></property>
+		<property name="uaddress" column="uaddress"></property>
+	
+	</class>
+	
+</hibernate-mapping>
+
