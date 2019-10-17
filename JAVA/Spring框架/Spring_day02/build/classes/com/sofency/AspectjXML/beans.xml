@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:aop="http://www.springframework.org/schema/aop" xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop 
+        http://www.springframework.org/schema/aop/spring-aop.xsd">
+ 		
+ 		
+ 	<bean id="UserServiceId" class="com.sofency.AspectjXML.UserServiceImpl"></bean>
+ 	<bean id="MyAspectId" class="com.sofency.AspectjXML.MyAspectjXML"></bean>
+      <aop:config>
+		<aop:aspect ref="MyAspectId" >
+		<!-- 切入点引入  即要增强的方法      -->
+			<aop:pointcut expression="execution(* com.sofency.AspectjXML.UserServiceImpl.*(..))" id="MyPointCut"/>
+		<!-- 	1.前置通知的方法的配置
+			method 方法 即方法名字  
+			pointcut-ref  对里面的方法的前置方法都执行  method里面的方法
+			<aop:before method="before" pointcut-ref="MyPointCut"/>
+			前置通知可以或的方法的名字
+				 <aop:after method="after" pointcut-ref="MyPointCut"/>
+			
+			
+		
+			
+			//带返回值后置通知
+			
+			    后置方法或得方法的返回值  如何获取哪  通过后置方法的第二个参数获取
+			    public void after(JoinPoint joinPoint,Object object)
+			             参数1：连接点描述
+			             参数2: 返回值
+			    xml的配置
+				<aop:after-returning method="after" returning="object(与方法的返回值一样)" pointcut-ref="MyPointCut"/>
+			
+			
+			
+				环绕通知
+				使用<aop:around method="" point-ref="MyPointCut"></aop:around>
+			 -->
+			
+			<aop:around method="MyAround" pointcut-ref="MyPointCut"></aop:around>
+			
+			<!-- 异常通知
+				public void MyThrowable(JoinPoint joinPoint,Throwable e);
+				method设置异常的捕获的方法
+				pointcut-ref 切面类的id
+				throwing 抛的位置
+				
+				 -->
+			
+			<aop:after-throwing method="MyThrowable" pointcut-ref="MyPointCut" throwing="e"/>
+			
+		<!-- 	最终通知 -->
+			
+			<aop:after method="MyFinally" pointcut-ref="MyPointCut"/>
+		</aop:aspect>
+	</aop:config>
+	
+</beans>

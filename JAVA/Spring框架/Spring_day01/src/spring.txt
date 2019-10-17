@@ -1,0 +1,95 @@
+Spring 的介绍
+面向切面编程     控制反转
+
+Spring是生产bean的工厂
+
+AOP的支持
+   spring提供面向切面编程  可以方便的实现对程序进行权限拦截  运行监控等功能
+
+声明式事务的支持  
+           只需要通过配置就可以完成对事务的管理  而无需手动编程
+
+方便程序的测试   
+   Spring对juni支持  可以通过注解方便的测试spring程序
+  
+方便集成各种优秀的框架
+	spring不排斥各种优秀的开源框架  其内部提供了对各种优秀框架（Struts hibernate mybatis）的直接支持
+	
+降低javaeeapi的使用难度
+	spring  对javaee开发中比较难用的一些api(JDBC  javaMail  远程调用)  都提供了封装  使这些api应用难度大大降低
+	
+核心容器
+	Core bean   context   expression
+	
+入门ioc
+2.1  导入jar包
+·4+1  4个核心  一个依赖
+
+提供UserService接口和实现类
+获得UserService实现类的实例
+
+学习spring之后 将由spring创建对象实例  ioc控制反转  之后需要实例对象时 需要从spring工厂中获得 需要将实现类的全路径配置到xml文件中 
+ 
+ 
+配置文件
+   位置 任意 开发中一般在classpath下
+   名称 任意 开发中常用applicationContext.xml 
+ 引入约束 schme
+ 
+ 
+ 
+ DI(Dependency Injection)依赖注入
+ 
+ 
+ 核心api 
+ 
+ 
+BeanFactory 这是一个工厂 用于生成任意的bean
+                    采取延迟加载，第一次getbean时才会被初始化bean
+ApplicationContext 
+                    是BeanFactory的子接口  功能更强大          国际化处理    事务传递   bean自动装配   各种不同应用层Context的试下你
+ClassPathXmlApplicationContext  用于加载classpath（类路径 src）下的xml  加载xml运行时位置
+
+FileSystemXmlApplicationContext  用于加载指定盘符下的xml
+ 
+ 
+Bean的种类
+普通bean  之前操作的都是普通bean
+FactoryBean  是一个特殊的bean  具有工厂生成对象能力  只能生成特殊的对象
+bean必须使用factoryBean 接口 此接口提供方法getObject()  用于获得特定的bean
+beanFactory 用于生产各种bean
+
+
+装备bean 基于注解
+1. 取代Bean   @Component("id")  取代的是<bean id="" class=""> 
+
+注解使用前提   添加命名空间  让spring扫描含有注解的类
+
+2.web开发   提供三个@Component注解衍生注解
+@repository  dao层
+@Service service层
+@Controller  web层  相当于替代<bean class=""> 
+
+3.依赖注入  给私有字段 设置  也可以 给setter方法设置
+普通值  @Value("")
+引用值  
+    方式1: 按照类型 注入
+    @AutoWired
+  方式2  按照名称注入
+     @AutoWired
+     @Qualifier("名称")
+     
+ 方式3 :Resource("名称")
+
+声明周期
+@scope("prototype")  多例的 
+@初始化方 法  @PostConstrut
+@销毁方法  @PreDestory
+
+
+注解和xml混搭   需要配置                                  使注入注解生效<context:annotation-config>        
+所有的bean配置到xml中  所有的依赖使用注解
+
+
+
+

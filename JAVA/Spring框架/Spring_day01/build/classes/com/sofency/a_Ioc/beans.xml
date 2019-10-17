@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!-- bean definitions here -->
+
+	<!-- 
+		id 用于之后spring容器获取实例时使用的
+		class  需要创建实例的全限定路径
+	 -->
+
+	<bean id="userServiceId" class="com.sofency.Spring_day01.UserServiceImpl"></bean>
+
+</beans>

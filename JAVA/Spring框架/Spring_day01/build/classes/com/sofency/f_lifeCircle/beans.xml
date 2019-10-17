@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans.xsd">
+                           
+     <!-- 获取实例 -->
+	<bean id="UserServiceId" class="com.sofency.f_lifeCircle.UserServiceImpl" 
+	init-method="initMethod"  destroy-method="destoryMethod"></bean>
+	<!-- <bean id="BookServiceId" class="com.sofency.f_lifeCircle.BookServiceImpl" 
+	init-method="initMethod"  destroy-method="destoryMethod"></bean> -->
+	<!-- 配置后处理Bean -->
+	<bean class="com.sofency.f_lifeCircle.MyBeanPostProcessor"></bean>
+</beans>

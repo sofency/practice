@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans.xsd">          
+
+<bean id="PersonId" class="com.sofency.g_setter.b_collec.Person">
+<!-- 数组的处理方式 -->
+	<property name="friends">
+		<array>
+			<value>sofency</value>
+			<value>alice</value>
+		</array>
+	</property>
+	
+<!--list 列表的处理方式 -->	
+	<property name="girlFriend">
+		<list>
+			<value>angleBoby</value>
+			<value>刘亦菲</value>
+			<value>苍老师</value>
+		</list>
+	</property>
+	
+	
+<!-- set集合的处理方式 -->
+
+	<property name="phone">
+		<set>
+			<value>iphone</value>
+			<value>huawei</value>
+			<value>oppo</value>
+		</set>
+	
+	</property>	
+<!-- map集合的处理方式 -->
+
+	<property name="girlAndBoy">
+		<map>
+			<entry key="sofency" value="吴婷"></entry>
+			<entry key="alice" value="焦锡亚"></entry>
+			<entry>
+				<key><value>苍井空</value></key>
+				<value>DJ NON</value>
+			</entry>
+		</map>
+	</property>
+	
+	
+	
+</bean>
+</beans>

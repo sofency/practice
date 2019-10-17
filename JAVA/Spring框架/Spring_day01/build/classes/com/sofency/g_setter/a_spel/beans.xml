@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans.xsd">          
+                  
+<!-- 
+对<property>进行同一编程  所有的内容都使用value
+<property name="属性"     value="#{表达式}">
+所有格式统一使用
+
+常量    #{10}  #{3.14} #{2e5}  #{'sofency'}
+引用bean  #{beanId}
+引用bean属性            #{beanId.propertyName}	
+引用bean方法          #{beanId.methodName().method()}
+引用静态方法      #{T(java.lang.Math).Pi}
+运算符支持          #{3 lt 4 == 4 ge 3}
+正则表达式支持    #{user.name  match  '[a-z]{6,}'}
+集合支持     #{likes{3}}
+-->
+
+<bean id="PersonId" class="com.sofency.g_setter.a_spel.Person">
+	<!-- <property name="Pname" value="alice"></property> -->
+	<!-- <property name="Pname" value="#{PersonId.Pname.toUpperCase()}"></property> -->
+		<property name="Pname" value="#{PersonId.Pname?.toUpperCase()}"></property>
+		<!-- 如果PersonId。Pname为空的话返回null  如果不为空执行toUpperCase()方法 -->
+		<property name="age" value="#{T(java.lang.Math).PI}"></property><!-- 调用指定包下的静态的方法 -->
+</bean>
+</beans>

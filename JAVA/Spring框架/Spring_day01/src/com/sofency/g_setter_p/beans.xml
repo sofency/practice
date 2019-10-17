@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans.xsd">
+                    
+                    <!--
+                    	引入p(property)标签    xmlns:p="http://www.springframework.org/schema/p"
+                    	p:属性    ="属性值" 
+                    	p:属性-ref ="属性值"
+                    
+                      -->       
+ <bean id="PersonId" class="com.sofency.g_setter_p.Person" 
+ 		p:pname="sofency" p:age="18" p:company-ref="companyId" p:school-ref="SchoolId">
+ 	
+ </bean>
+ 
+ <bean id="companyId" class="com.sofency.g_setter_p.Company">
+ 	<property name="Cname" value="阿里巴巴"></property>
+ 	<property name="CNumber" value="99999"></property>
+ </bean>
+ <bean id="SchoolId" class="com.sofency.g_setter_p.School">
+ 	<property name="Sname" value="西安工程大学"></property>
+ 	<property name="Saddress" value="陕西西安"></property>
+ </bean>
+</beans>

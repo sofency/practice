@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:aop="http://www.springframework.org/schema/aop" xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop 
+        http://www.springframework.org/schema/aop/spring-aop.xsd">
+     
+     <!-- 目标类 -->
+	<bean id="UserServiceId" class="com.sofency.springAop.UserServiceImpl"></bean>
+	
+	<!-- 切面类 -->
+	<bean id="MyAspectId" class="com.sofency.springAop.MyAspectTest"></bean>
+	
+	
+	<!-- aop编程 
+		<aop:config>进行配置
+		<aop:pointcut>  切入点  从目标方法获取具体方法
+		<aop:advisor>  特殊的切面  只有一个通知        一个切入点
+				advice-ref=通知引用
+				pointcut-ref 切入点引用
+	-->
+    <aop:config proxy-target-class="true">
+		<aop:pointcut expression="execution(* com.sofency.springAop.UserServiceImpl.*(..))" id="MyPointCut"/>
+		<aop:advisor advice-ref="MyAspectId" pointcut-ref="MyPointCut"></aop:advisor>
+		
+	</aop:config>
+     
+</beans>
