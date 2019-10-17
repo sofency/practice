@@ -1,1 +1,3 @@
 此处有bug
+Bean named 'MyAspectId' must be of type [org.aopalliance.aop.Advice], but was actually of type [com.sofency.springAop.MyAspectTest]
+无法引用切面类
