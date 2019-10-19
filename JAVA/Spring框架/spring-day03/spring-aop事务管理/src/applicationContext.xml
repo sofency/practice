@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:aop="http://www.springframework.org/schema/aop" xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop 
+        http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/tx 
+        http://www.springframework.org/schema/tx/spring-tx.xsd">
+       <!-- 数据源 -->
+       <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+       		<property name="driverClass" value="com.mysql.jdbc.Driver"></property>
+       		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/sofency?serverTimezone=UTC"></property>
+       		<property name="user" value="root"/>
+       		<property name="password" value="19980120"/>
+       </bean>
+       <!-- Dao层 -->
+       <bean id="transferDaoId" class="com.sofency.transferDaoImpl.transferMoneyImpl">
+       	    <property name="dataSource" ref="dataSource"></property>
+       </bean>
+       <!-- service层 -->
+       <bean id="transferServiceId" class="com.sofency.transferServiceImpl.transferImpl">
+       	    <property name="transfer" ref="transferDaoId"></property>
+       </bean>
+       <!-- 事务管理 -->
+       <!-- 4.1事务管理器 -->
+       <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+       		<property name="dataSource" ref="dataSource"></property>
+       </bean>
+       <!-- 4.2事务详情   在aop筛选基础上   对ABC 确定使用什么样的事务      -->
+       <tx:advice id="txAdvice" transaction-manager="transactionManager">
+       		<tx:attributes>
+       			<tx:method name="transferMoney" propagation="REQUIRED" isolation="DEFAULT"/>
+       		</tx:attributes>
+       </tx:advice>
+       <!-- 4.3aop编程筛选 -->
+       <aop:config>
+       		<aop:advisor advice-ref="txAdvice" pointcut="execution(* com.sofency.transferServiceImpl.transferImpl.*(..))"></aop:advisor>
+       </aop:config>
+</beans>
