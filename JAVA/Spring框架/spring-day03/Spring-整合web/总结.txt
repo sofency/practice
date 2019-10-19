@@ -1,0 +1,30 @@
+遇到的问题
+问题描述
+因为这个项目是在原来项目的基础上面复制过来的所以再tomcat上面启动服务器的时候遇到使用复制源的名字能访问而使用该项目名字却无法访问的问题
+解决方案
+1. 在项目上右击选中properties  然后搜索web Project setting  将context root改为该项目的名字
+2. 在本地目录里面找到该项目  在.project 里面将 name属性值改为 项目名字
+3. 在.setting 文件夹里面打开  org.eclipse.wst.common.component文件 将复制源的名字改为项目的名字
+4.重新添加项目启动服务器
+
+
+spring整合web的思路整理
+
+tomcat启动时加载配置文件
+servlet  -->init(ServletConfig)  -->load-on-startup
+fliter   init(FliterConfig) wbe.xml   注册过滤器自动调用初始化
+listener >servletContextlistener  -->ServletContext  对象监听
+              需要spring-web.release.jar包
+spring提供监听器  ContextLoaderListener ->web.xml   <Listen><Listen-class>
+
+如果只配置监听器默认加载xml的位置是在WEB-INF/applicationContext.xml
+确定初始化文件的位置
+ <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>classpath:applicationContext.xml</param-value>
+  </context-param>
+目标： 在web端通过点击按钮实现对数据库的操作
+
+1. 启动tomcat服务器
+2.加载spring容器 （service中的配置文件）
+3. 在servlet中获取spring的容器  （ApplicationContext）  根据applicationContext获取服务层的对象  自此结合
