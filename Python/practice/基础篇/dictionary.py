@@ -67,6 +67,30 @@ print(name_age.setdefault('hanno',18))
 print(name_age)
 
 
+#使用zip和dict创建字典
+
+test = {'姐妹','兄弟','爸爸'}
+test1 = {'19','21','34'}
+print(tuple(zip(test,test1)))#随机压缩的
+dictory = dict(zip(test,test1))
+print(dictory)
+dict1={tuple(test):tuple(test1)}
+print(dict1)
+
+#生成字典的方式 dict(key=value)  key不能带引号
+test2 = dict(罗汉="囧",汉字="帅")
+print(test2)
+
+#只包含名字的字典
+name_list = {"sofency","alice","ahoj"}
+dictory = dict.fromkeys(name_list)
+print(dictory)
+
+#遍历字典
+for key,value in test2.items():
+    print(key+"---"+value)
+for item in test2.items():
+    print(item)#打印出元组
 
 
 

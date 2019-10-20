@@ -1,7 +1,7 @@
+#函数的参数可以直接写上默认值
 def say_hi(name="孙悟空",message="欢迎来到C语言学习网"):
     print(name,",你好")
     print("消息是：",message)
-
 
 # 定义一个打印三角形的函数，有默认值的参数必须放在后面
 def printTriangle(char, height = 5) :

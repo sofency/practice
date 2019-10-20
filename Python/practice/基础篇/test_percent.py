@@ -1,7 +1,7 @@
 #字符串的格式化输出
 num = -28
 print("num is : %6i"% num)#转化为带符号的十进制形式的整数
-print("num is : %6d"% num)#转化为带符号的八进制形式的整数
+print("num is : %6d"% num)#转化为带符号的十进制形式的整数
 print("num is : %6x"% num)#转化为带符号的十六进制的整数
 print("num is : %6o"% num)#转化为带符号的八进制形式的整数
 print("num is : %-2e"% num)#转化为科学计数法的浮点数

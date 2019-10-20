@@ -9,7 +9,7 @@ def get_math_func(type):
         return lambda n:(n+1)*n//2
 
 data=[1,2,3,4,5]
-my_function=get_math_func("square")#lambda 前面的参数传递个my_function 表达式赋值给my_function(参数)
+my_function=get_math_func("square")#lambda 前面的参数传递给my_function 表达式赋值给my_function(参数)
 for i in data:
     print(my_function(i),end=' ')
 print()

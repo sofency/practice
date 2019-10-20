@@ -15,11 +15,14 @@ def tst():#函数体
 
 x=3
 y=4
+print("打印全局变量")
 print(globals())#打印全局变量
-
+print("打印局部变量")
 print(locals())#打印局部变量
-
+print("打印x")
 print(globals()['x'])
 
+print("测试tst")
 tst()
+print("-----")
 print(x)#改成40了说明globals()指向了x的变量修改了x的值

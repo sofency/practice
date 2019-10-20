@@ -2,6 +2,7 @@ def my_max(x,y):#定义函数
     """
     获取两个数值之间较大的函数
     定义一个z,该变量等于x和y中较大的那个
+    三目运算符的书写方法   a if a>b else b
     """
     z=x if x>y else y
     return z
