@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<c3p0-config>
+    <default-config>
+        <properties name="user">sofency</properties>
+        <properties name="password">19980120</properties>
+        <properties name="driverClass">oracle.jdbc.driver.OracleDriver</properties>
+        <properties name="jdbcUrl">jdbc:oracle:thin:@127.0.0.1:1521:ORCL</properties>
+    </default-config>
+
+    <name-config  name="sofency">
+        <properties name="user">sofency</properties>
+        <properties name="password">19980120</properties>
+        <properties name="driverClass">oracle.jdbc.driver.OracleDriver</properties>
+        <properties name="jdbcUrl">jdbc:oracle:thin:@127.0.0.1:1521:ORCL</properties>
+        <properties name="maxPoolSize">50</properties>
+        <properties name="initialPoolSize">40</properties>
+        <property name="acquireIncrement">3</property>
+        <property name="acquireRetryAttempts">100</property>
+    </name-config>
+
+</c3p0-config>
