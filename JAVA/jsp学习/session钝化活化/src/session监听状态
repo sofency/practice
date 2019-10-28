@@ -1,0 +1,25 @@
+session的钝化和活化
+钝化:内存-》硬盘
+活化：硬盘-》内存
+session对象的四种状态  都不需要配置web。xml
+监听绑定和解绑   HttpSessionBindingListener
+a.  session。setAttribute("a",xxx)  对象a 绑定在session中
+b。     session.remove("a")  将对象a从session中解绑
+
+监听钝化和活化  实现接口  HttpSessionActivationListener  本质就是序列化和反序列化的过程因此钝化和活化需要再实现Serizilable 接口
+c.  钝化      
+d.  活化  ${sessionScope.bean.name} sessionScope.对象。属性
+
+配置钝化和活化 
+配置的目录     tomcat下的/conf/context.xml
+配置如下
+maxIdleSwap 最大空闲实现    如果超过了改时间就会被钝化  directory是相对路径 绝对路径是tomcat下的localhost下的项目
+<Manager  className="org.apache.catalina.session.PersistentManager"  maxIdleSwap="5" >
+	<Store   className="org.apache.catalina.session.FileStore" directory="storedata" />
+</Manager>
+
+注意tomcat 要使用托管状态     再进行托管状态设置时需要将eclipse里面配置的tomcat删除
+window- preference -- server--remove   
+删除项目下的tomcat文件包   
+重新导入 
+设置完毕之后重启tomcat
