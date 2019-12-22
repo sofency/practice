@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace="com.sofency.Dao.OrderDao">
+    <resultMap id="findOrdersUserResultMap" type="com.sofency.domain.Orders">
+    	<!-- 配置映射的订单信息 -->
+    	<id column="orderId" property="orderId"/><!-- 如果有多个列组成唯一标识，配置多个Id -->
+    	<result column="user_Id" property="user_Id"/>
+    	<result column="number" property="number"/>
+    	<result column="createtime" property="createtime"/>
+    	<!-- 配置映射的关联的用户的信息 -->
+    	
+    	<!-- 用于映射关联查询的单个对象的信息 -->
+    	<association property="user" javaType="com.sofency.domain.User">
+    		<id column="userId" property="userId"/>
+    		<result column="username" property="username"/>
+    		<result column="address" property="address"/>
+    	</association>
+    </resultMap>
+    
+    
+    <!-- 考虑到下面的订单信息和用户信息是引用上面的重复代码  因此可以使用extends进行集成上面的代码 -->
+    <resultMap id="OrdersAndOrderDetail" type="com.sofency.domain.Orders" extends="findOrdersUserResultMap">
+    	<!-- 配置映射的订单信息 -->
+    	<!-- <id column="orderId" property="orderId"/>如果有多个列组成唯一标识，配置多个Id
+    	<result column="user_Id" property="user_Id"/>
+    	<result column="number" property="number"/>
+    	<result column="createtime" property="createtime"/> -->
+    	<!-- 配置映射的关联的用户的信息 -->
+    	
+    	<!-- 用于映射关联查询的单个对象的信息 -->
+    <!-- 	<association property="user" javaType="com.sofency.domain.User">
+    		<id column="userId" property="userId"/>
+    		<result column="username" property="username"/>
+    		<result column="address" property="address"/>
+    	</association> -->
+    	
+    	<!-- 订单明细信息  对关联的查询的一对多信息进行映射
+    	collection 对关联查询的每条记录映射到集合对象中
+    	property 将关联查询的多条记录映射到com.sofency.domain.Orders 的哪个属性上面
+    	ofType 指定李list集合属性中pojo的类型
+    	-->
+    	<collection property="orderDetail" ofType="com.sofency.domain.OrderDetail">
+    		<id column="itemId" property="itemId"/>
+    		<result column="itemNum" property="itemNum"/>
+    	</collection>
+    </resultMap>
+    
+    
+    
+    <resultMap id="findUserAndItemsMap" type="com.sofency.domain.User">
+    	<id property="userId" column="userId"/>
+    	<result property="username" column="username"/>
+    	<result property="address" column="address"/>
+    	<collection property="orders" ofType="com.sofency.domain.Orders">
+    		<id property="orderId" column="orderId"/>
+    		<result property="number" column="number"/>
+    		<result property="createtime" column="createtime"/>
+    		<collection property="orderDetail" ofType="com.sofency.domain.OrderDetail">
+    			<id property="id" column="id"/>
+    			<result property="itemNum" column="itemNum"/>
+    			<association property="items" javaType="com.sofency.domain.item">
+    				<id property="itemId" column="itemId"/>
+    				<result property="itemName" column="itemName"/>
+    				<result property="itemPrice" column="itemPrice"/>
+    			</association>
+    		</collection>
+    	</collection>
+    </resultMap>
+    <!-- 使用resultMap进行关联映射 -->
+	<select id="findOrdersUserByMap" resultMap="findOrdersUserResultMap">
+		select Orders.*,
+		User.username,
+		User.address 
+		from Orders,User
+		where User.userId = Orders.user_Id
+	</select>
+
+
+<!-- 使用resultType进行关联映射 -->
+	<select id="findOrdersUser" resultType="com.sofency.domain.OrderCustom">
+		select Orders.*,
+		User.username,
+		User.address 
+		from Orders,User
+		where User.userId = Orders.user_Id
+	</select>
+	
+	
+	<!-- 使用resultType进行关联映射 -->
+	<select id="findOrdersAndOrderDetail" resultMap="OrdersAndOrderDetail">
+		select Orders.*,
+		User.username,
+		User.address,
+		OrderDetail.itemId,
+		OrderDetail.itemNum
+		from Orders,User,OrderDetail
+		where User.userId = Orders.user_Id and Orders.orderId= OrderDetail.orderId
+	</select>
+	
+	<!-- 查询所有用户购买的商品信息 -->
+	<select id="findUserAndItems" resultMap="findUserAndItemsMap" >
+	   select User.userId,
+	   User.username,
+	   User.address,
+	   Orders.orderId,
+	   Orders.number,
+	   Orders.createtime,
+	   OrderDetail.itemNum,
+	   item.itemId,
+	   item.itemName,
+	   item.itemPrice
+	   from User,Orders,OrderDetail,item
+	   where 
+	   User.userId = Orders.user_Id 
+	   and Orders.orderId = OrderDetail.orderId 
+	   and OrderDetail.itemId= item.itemId
+	</select>
+	
+	<!-- 对于上述进行resultType进行查询 -->
+	<select id="findUserAndItemsByType" resultType="com.sofency.domain.UserAndItems">
+		select 
+		User.username,
+		User.address,
+		item.itemId,
+	    item.itemName,
+	    item.itemPrice
+	    from User,Orders,OrderDetail,item
+	    where 
+	    User.userId = Orders.user_Id 
+	    and Orders.orderId = OrderDetail.orderId 
+	    and OrderDetail.itemId= item.itemId
+	</select>
+	
+	<!-- 延迟加载的resultMap -->
+	<resultMap type="com.sofency.domain.Orders" id="OrderAndUserWithLazyLoad">
+		<id property="orderId" column="orderId"/>
+		<result property="user_Id" column="user_Id"/>
+		<result property="number" column="number"/>
+		<result property="createtime" column="createtime"/>
+		
+		<!-- 实现对用户信息的延迟加载 
+		select   指定延迟加载需要执行的statement的Id  是根据user_id 查询用户信息的statement
+		要使用userDao。xml中findUserById完成根据用户id 查询用户的查询
+		column 订单信息中关联用户信息查询的列
+		-->
+		<association property="user" javaType="com.sofency.domain.User" select="com.sofency.Dao.UserDao.findUserById" column="user_Id">
+				<!-- 实现懒加载 -->
+		</association>
+	</resultMap>
+	
+	
+	<!-- 懒加载  查询订单关联用户  用户信息使用延迟加载-->
+	<select id="findOrderAndUserWithLazyLoad" resultMap="OrderAndUserWithLazyLoad">
+			select * from Orders
+	</select>
+</mapper>

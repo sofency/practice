@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--mapper的约束文件-->
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 
+	在映射文件中配置很多sql语句
+	将sql语句封装到mappedStatement对象中 所以id又叫做statement的id
+	parameterType  指定输入参数的类型
+	#{} 表示一个占位符号
+	 #{username}  其中的username 表示接受的参数 参数民称就是username 如果输入的参数是简单类型  #{} 的参数名称可以是任意的 
+-->
+<mapper namespace="com.sofency.Dao.UserDao">   
+	<!-- 
+	定义sql片段
+	id 是sql片段的唯一标识
+	
+	经验 是基于单表来定义sql片段  这样的话这个SQL片段重用性才高
+	在sql片段中不要包含where
+	 -->
+	 <sql id ="query_user_where">
+	 	<if test="userCustom!=null">
+   			<if test="userCustom.sex!=null and userCustom.username!=''">
+   				 sex = #{userCustom.sex}  
+   			</if>
+   			<if test="userCustom.username!=null and userCustom.username!=''">
+   				and username like concat('%',#{userCustom.username},'%')
+   			</if>
+    	</if>
+	 </sql>
+ 
+	<!--定义resultMap -->
+	<resultMap type="user" id="userResultMap">
+		<!-- id 表示查询结果的唯一标识
+		type 表示输出的类型
+		column 查询出来的列名
+		property type类型执行的pojo类型的属性名
+		最终resultMap对column和property做一个映射关系-->
+		<id column="userId_" property="userId"></id>
+		<!-- result 对普通名映射定义
+		column 查询出来的列名
+		property type指定的pojo类型的属性名
+		最终 resultMap对column和property做一个映射关系
+		 -->
+		 <result column="username_" property="username"/>
+	</resultMap>
+
+    <!--配置查询所有  id是方法的名称-->
+    <select id="findAllUser" resultType="user">
+        select * from User;
+    </select>
+    
+    <!-- 主键的回填      通过 设置useGeneratedKeys=true  主键属性keyproperty=userid  进行设置-->
+ 	
+    <insert id="insertUser" parameterType="user" useGeneratedKeys="true" keyProperty="userId">
+    	<!-- 
+	    	<selectKey keyProperty="userId" order="AFTER" resultType="int">
+	    		SELECT LAST_INSERT_ID();
+	    	</selectKey>
+	    	
+	    	<selectKey keyProperty="userId" order="BEFORE" resultType="String">
+	    		SELECT 序列名.nextval();
+	    	</selectKey> 
+    	-->
+    
+   		insert into User(username,birthday,sex,address) values(#{username},#{birthday},#{sex},#{address})
+    </insert>
+    
+    
+      <!-- 根据username 进行查询所有 -->
+    <select id="findByUsername" parameterType="String" resultType="user">
+    	select * from User where username=#{username}
+    </select>
+    
+    
+	<!-- 部分查询 -->
+	<select id="findPartUser" parameterType="String" resultMap="userResultMap">
+		select userId userId_,username username_ from User where sex=#{sex}
+	</select>
+    
+    
+    
+    <!-- 根据username和sex进行混合查找查询   结合动态sql-->
+    <select id="findByUsernameAndSex" parameterType="UserQueryVo" resultType="user">
+    <!-- 	select * from User where  sex = #{userCustom.sex}  and username like concat('%',#{userCustom.username},'%') -->
+    	select * from User 
+    	<where>
+    		<if test="userCustom!=null">
+    			<if test="userCustom.sex!=null and userCustom.username!=''">
+   				 	sex = #{userCustom.sex}  
+	   			</if>
+	   			<if test="userCustom.username!=null and userCustom.username!=''">
+	   				and username like concat('%',#{userCustom.username},'%')
+	   			</if>
+    		</if>
+    	</where>
+    </select>
+    
+    
+    <!-- 使用sql片段进行查询 -->
+     <select id="findByUsernameAndIdWithSql" parameterType="UserQueryVo" resultType="user">
+    	select * from User 
+    	<where>
+    		<include refid="query_user_where"/>
+    	</where>
+    </select>
+    
+    <!-- 根据用户的id进行查询 -->
+    <select id="findUserById" resultType="user" parameterType="int">
+    	select * from User where userId = #{userId}
+    </select>
+    
+    <!-- 模糊查询   
+    #{} 表示一个占位符
+    ${} 表示一个拼接符号 会引起sql注入的风险
+    -->
+    
+    <select id="fuzzyQuery" parameterType="String" resultType="user" >
+    	select * from user where username like concat('%',#{str},'%')
+    </select>
+    
+    <!-- 使用foreach对执行的id列表进行查询 -->
+    <select id="findByIds" parameterType="UserQueryVo" resultType="user">
+    	select * from User where 1=1 
+    	<foreach collection="ids" item="userId" open="and (" close=")" separator="or">
+    	    userId=#{userId}
+    	</foreach>
+    </select>
+    
+    
+    <delete id="deleteUser">
+    	delete from user where userId=${userId}
+    </delete>
+    
+    
+    <update id="updateUser" parameterType="user">
+    	update User set username = #{username} where userId=#{userId}
+    </update>
+    
+</mapper>

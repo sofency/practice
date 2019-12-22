@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!--mybatis的主配置文件-->
+
+<configuration>
+<!-- 外部引入的文件必须放在前面 -->
+
+    <properties resource="jdbc.properties"/>
+    
+    <settings>
+    <!-- 打开延迟加载的开关 -->
+		<setting name="lazyLoadingEnabled" value="true"/>
+		<setting name="aggressiveLazyLoading" value="false"/>
+	</settings>
+   <!-- 启用别名  这样整个项目都可以将comsofency.domain.User 替换为user了 -->
+    <typeAliases>
+    	<!-- <typeAlias  type="com.sofency.domain.User" alias="user"/> --><!-- 只是为了标注里面的方法是哪个接口里面的不会影响程序的执行 -->
+    	<package name="com.sofency.domain"/><!-- 批量导入  别名是类名 -->
+    </typeAliases>
+<!-- 
+	mybatis 将按照下面的熟悉怒来加载属性
+	在 properties元素体内定义的属性首先被读取
+	然后会读取properties 元素中resource或url加载的属性 它会覆盖已读取的同名属性
+	最后读取patameterType传递的属性它会覆盖已读取的同名属性
+	因此 parameterType具有传递的最高优先级
+ -->
+  <!--配置环境-->
+    <environments default="development">
+        <environment id="development">
+            <!--配置事务类型-->
+            <transactionManager type="JDBC"/>
+            <!--配置数据源-->
+            <!--配置连接数据库的四个基本信息-->
+            <dataSource type="POOLED">
+                <property name="driver" value="${jdbc.driver}"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.username}"/>
+                <property name="password" value="${jdbc.password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <!--指定映射文件的位置 映射文件指的是每个dao独立的配置文件-->
+    <mappers><!-- 不能放在数据源前面 -->
+        <mapper resource="com/sofency/mapper/UserDao.xml"/>
+        <mapper resource="com/sofency/mapper/OrderDao.xml"/>
+    </mappers>
+
+</configuration>

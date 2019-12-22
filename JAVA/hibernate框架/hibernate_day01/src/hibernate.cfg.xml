@@ -27,19 +27,12 @@
 	<!-- 	配置数据库方言 -->
 		<property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
 		
-		
 		<!-- 与本地线程绑定 -->
 		<property name="hibernate.current_session_context_class">thread</property>
 		
-		
 	<!-- 第三部分 把映射文件放到核心配置文件中 -->
 		<mapping  resource="com/sofency/entity/User.hbm.xml" />
-			
 	
 	</session-factory>
-	
-
-
-
 </hibernate-configuration>
 
