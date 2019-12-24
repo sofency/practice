@@ -1,0 +1,55 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:aop="http://www.springframework.org/schema/aop" xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc 
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/aop 
+        http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd">
+        <!-- 创建Handler -->
+        <bean id="itemController" name="/queryItem.action" class="com.sofency.top.controller.ItemController"></bean>
+        
+        
+        <!-- 配置另一个handler -->
+        <bean name="/queryHttpItem.action" class="com.sofency.top.controller.ItemHttpController"></bean>
+        
+        <!-- 
+        	处理器映射器将bean的name作为url进行查找 需要在配置Handler时指定beanname(url)     非注解的映射器     
+         -->
+         <!-- 映射器1 
+         两种映射器都可以将url和锁对应的控制器对应起来
+         -->
+         <bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"></bean>
+         
+         <!-- 简单url的映射器2  和上面的映射器一样  -->
+         <bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+         		<property name="mappings">
+         			<props>
+         			<!-- 可以通过下面两个链接都可以进行访问 -->
+         				<prop key="/queryItem1.action">itemController</prop>
+         				<prop key="/queryItem2.action">itemController</prop>
+         			</props>
+         		</property>
+         </bean>
+         
+        <!-- 处理器适配适配器 
+        所有的处理器适配器都实现了HandlerAdapter的接口   要求实现controller接口
+        -->
+        <bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter"></bean>
+        
+        <!-- 适配器二 -->
+        <bean class="org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter"></bean>
+        
+        
+        <!-- 视图解析器     解析jsp 默认使用jstl标签  classpath下需要有jstl的包 -->
+        <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"></bean>
+        
+</beans>
