@@ -1,0 +1,52 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:aop="http://www.springframework.org/schema/aop" xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd">
+	
+	<!-- 在applicatinContext.xml中配置sqlSessionFactory和数据源 -->
+	<context:property-placeholder location="classpath:jdbc.properties"/>
+	
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+			<property name="driverClassName" value="${jdbc.driver}"></property>
+        	<property name="url" value="${jdbc.url}"></property>
+        	<property name="username" value="${jdbc.username}"></property>
+        	<property name="password" value="${jdbc.password}"></property>
+        	<property name="maxActive" value="10"></property>
+        	<property name="maxIdle" value="5"></property>
+	</bean>
+
+	<!-- 配置sqlSessionFactory -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<!-- 加载mybatis的配置文件 -->
+		<property name="configLocation" value="classpath:mybatis-config.xml"></property>
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	
+	<!-- 原始dao层开发 -->
+   <!--   <bean id="userDao" class="com.sofency.dao.UserDaoImpl">
+     		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+     </bean> -->
+     
+     <!-- mapper的配置  配置mapper的代理对象 -->
+   <!--   <bean id="userMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+     		<property name="mapperInterface" value="com.sofency.dao.UserDao"></property>
+     		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+     </bean> -->
+     <!-- 上面的弊端就是如果有多个接口的时候会创建多个bean的对象   因此可以进行批量扫描
+     遵循的规范就是mapper.java和mapper.xml在同一个目录下  自动扫描之后  id 就是mapper的类名 首字母小写    如果扫描多个包的话    每个包之家用半角逗号分隔开
+     -->
+      <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+     		<property name="basePackage" value="com.sofency.mapper"></property>
+     		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
+     </bean>
+     
+</beans>
