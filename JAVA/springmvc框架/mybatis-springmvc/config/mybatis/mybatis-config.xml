@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- mybatis的头部约束文件 -->
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+        
+<configuration>
+	<!-- 配置日志打印出来 -->
+    <settings>
+		 <setting name="logImpl" value="STDOUT_LOGGING" />
+		 <!-- 开启二级缓存 -->
+		 <setting name="cacheEnabled" value="true"/>
+	</settings>
+	<!-- 配置别名 -->
+	<typeAliases>
+		<package name="com.sofency.ssm.pojo"/>
+	</typeAliases>
+</configuration>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC 
+	"-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 自己编写复杂的查询条件 -->
+<mapper namespace="com.sofency.ssm.mapper.ItemMapperCustom" >
+	<!-- sql片段 -->
+	<sql id="searchByTomato">
+		<if test="itemCustom!=null">
+			<if test="itemCustom.itemName!=null and itemCustom.itemName!=''">
+					itemName like "%${itemCustom.itemName}%"
+			</if>
+		</if>
+	
+	</sql>
+
+  <!-- 实现模糊查询 -->
+  <select id="findByTomatoName" parameterType="com.sofency.ssm.pojo.ItemCustomVo" resultType="com.sofency.ssm.pojo.ItemCustom">
+  		select * from item
+  		<!-- 多表的查询 -->
+  		<where>
+  			<include refid="searchByTomato"></include>
+  		</where>
+  </select>
+  
+</mapper>

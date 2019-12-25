@@ -1,0 +1,31 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:aop="http://www.springframework.org/schema/aop" xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc 
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/aop 
+        http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd">
+      
+        <!-- 扫描handler  扫描所有的controller的方式 -->
+        <context:component-scan base-package="com.sofency.ssm.controller"></context:component-scan>
+       	
+       	<mvc:annotation-driven></mvc:annotation-driven>
+        
+        <!-- 视图解析器     解析jsp 默认使用jstl标签  classpath下需要有jstl的包 -->
+        
+        <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        	<!-- 配置视图解析器的前缀和后缀 -->
+        	<property name="prefix" value="/WEB-INF/jsp/"></property>
+        	<property name="suffix" value=".jsp"></property>
+        </bean>
+        
+</beans>
