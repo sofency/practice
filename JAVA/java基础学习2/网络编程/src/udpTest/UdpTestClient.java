@@ -25,7 +25,7 @@ public class UdpTestClient {
 //		1.使用DatagramSocket  指定端口  创建发送端
 		DatagramSocket client=new DatagramSocket(9999);
 //		2.准备数据  一定要转化为字节数组
-		String string="sofency  love 李小燕";
+		String string="sofency  love";
 		byte[] by=string.getBytes();
 //		3.封装成DatagramPacket 包裹   需要指定目的地
 		DatagramPacket packet=new DatagramPacket(by,0,by.length,new InetSocketAddress("localhost",8888));

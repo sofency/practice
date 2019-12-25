@@ -19,7 +19,7 @@ public class UdpTypeTestClient {
 		DataOutputStream dos=new DataOutputStream(baos);//数据类型数据输出流
 		
 		byte[] datas=null;
-		dos.writeUTF("sofency hello world 李小燕");
+		dos.writeUTF("sofency hello world");
 		dos.writeBoolean(false);
 		dos.writeInt(18);
 		dos.writeChar('a');
