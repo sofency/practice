@@ -5,16 +5,6 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-/**
- * 创建服务器
- * 1.指定端口  使用serverSocket创建服务器
- * 2.阻塞式等待连接 accept
- * 3.操作输出流输出流操作
- * 4
- * @author sofency
- *
- */
-
 public class Server {
 	public static void main(String[] args) throws IOException {
 		//1.指定端口  使用serverSocket创建服务器
