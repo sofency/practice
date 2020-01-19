@@ -81,6 +81,16 @@ zip的压缩
 zip zz.zip  *.py
 upzip zz.zip      -d 制定路径
 
+rpm 软件安装包的管理命令
+rpm -qa  模糊名字 查询模糊名字的完整名字
+卸载rpm安装包
+rpm -ql tree        # 查询
+rpm -e tree          # 卸载
+安装rpm的软件
+rpm -ivh your-package                # 直接安装
+rpm --force -ivh your-package.rpm # 忽略报错，强制安装
+
+
 日历
 cal 
 cal 2008
@@ -90,6 +100,7 @@ date 显示当前日期
 
 进程 
 查看进程 ps -aux
+ps -ex |grep 名字  查看某个进程
 top
 htop
 查看当前进程情况
