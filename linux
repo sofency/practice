@@ -1,11 +1,14 @@
 Basic realization  of linux
 1. replace the root catalog with '/'
-2. 'bin' catalog usually  keep programs
-3. 'boot' catalog  is the home of some files starting up the system
+2. '/bin/' 存放系统命令的目录  普通用户和超级用户都可以执行 
+3. '/boot/' 启动启动目录 保存系统启动相关的文件
 4. 'cdrom' catalog  is kind of memory recorder(存储器)
-5. 'etc'  服务器配置的地方  the place of configing the server 
-6. 'lib'  库
-7. 'home'  存储用户的地方,即多用户存储文件的根目录 
+5. '/etc/' 配置文件保存位置 系统内所有采用默认安装方式(rpm)的服务的配置文件全部都存储在这个目录当中,如用户账户和密码，服务的启动脚本，常用的配置文件等  
+6. '/lib'  库
+7. '/home'  存储用户的地方,即多用户存储文件的根目录 
+8. /sbin/ 保存和系统环境设置相关的命令 只有超级用户可以使用这些命令进行系统环境设置。
+9. /usr/bin/  存放系统命令的目录  普通用户和超级用户都可以执行
+10. /usr/sbin 存放根文件系统 不必要的系统管理命令
 
 
 Practice basic order to control the operation system of linux
