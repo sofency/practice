@@ -25,18 +25,29 @@ ls -l 显示的文件是以列表的形式显示的
 ls -l -h  以合适的单位显示文件的大小
 选项可以重叠放
 ls -lah 显示所有文件并且显示每个文件的大小
+ls -ld /etc  显示/etc的目录信息   不加d的话显示的是/etc目录下的文件的信息
+ls -i 查询当前目录下文件所对应的结点 eg： 783361 bin  linux 是根据783361来查找bin目录的  
 
-
-1. ls  --show files of current path
+1. ls  --show files of current path          
    ls  /bin   显示bin目录下的文件
-2. pwd --show absolute path
-3. touch --在当前目录新建文件
+2. pwd --显示当前的路径   cd  进入目录  cd .. 返回到上级目录
+3. touch --在当前目录新建文件  
+touch a.txt 创建a.txt文件
+
 4. vi --进入文件进行操作   输入i 进行编辑 按esc退出编辑 :wq 保存退出 
 5. man 命令 查看命令的帮助    q退出
 6. 命令tab自动补全
 7. 查看文件里面的内容  
    cat 文件名 只能查看 不能修改 
-   gedit 文件名 窗口打开文件
+   cat -n a.txt  显示行号的查看文件
+   tac a.txt  倒着显示文件内容
+   more  /etc/services    进入分页浏览状态之后  使用空格和f分页  enter换行  使用q退出  不能向上查看
+   less /etc/services  可以进行搜索  上下键可以进行查看
+   可以进行搜索  在less浏览状态下输入 / 再输入搜索的关键词 就可以进行搜索了。
+   head -n 7 /etc/services  查看文件的前七行  不写数字的话默认显示10行
+   tail -n 7 /etc/services 查看文件的后七行
+   tail -f /var/log/message  动态显示文件末尾的内容
+  
 8. history 记录linux中执行过的命令 
 9. 执行记录过程中的命令  !13 执行第13次输入的命令
 10. rm 删除命令    rm  文件名 删除文件
@@ -52,11 +63,15 @@ ls -lah 显示所有文件并且显示每个文件的大小
 18. cd ../..  相对路径跳转     cd /home/Desktop/ 绝对路径进行跳转 
 
 19. mkdir    mkdir A/B/C/D  -p 优先创建依赖的文件夹 
-20.rmdir 删除空的dir
+在根目录下创建data文件夹并且在里面创建images文件夹
+mkdir data/images  是不行的,因为data文件夹还没有进行创建
+因此需要使用 -p 命令 进行优先创建依赖的文件夹
+mkidr data/images -p
+
+20.rmdir 删除空的dir  remove empty directory
 21. 删除文件时使用rm时 应该  rm 文件 -r 删除文件夹或者文件
 
 22.连接 
-修改文件名： mv  源文件名(文件) 新文件名(文件)
 创建软连接   ln -s 1.txt(源文件)  1.softlink.txt(软连接文件名)
 这样就可以通过cat  1.softlink.txt 进行查看 1.txt文件的内容了  删除源文件之后 软连接失去作用
 
@@ -68,7 +83,20 @@ grep -v  "ntfds"  文件名    查找不包含ntfds的文件
 
 
 25. mv  11.txt laowang/ 将11.txt 移动到老王文件夹上  对应的是剪切
+修改文件名： mv  源文件名(文件) 新文件名(文件)
+mv 11.txt 12.txt
+
+
 26 cp 文件  文件  -r   对应的是复制粘贴到特定的文件夹
+eg:   
+cp /data/images/demo1.jpg /etc/  将/data/images/demo1.jpg 复制到/etc/下
+如果要复制目录的话 要使用选项 -r 此种方法改变了被复制文件的属性 如 更改时间
+cp -r /data/images /etc/  
+如果想保留源文件的属性的话
+cp -p /data/images /etc/
+如果将文件复制过去修改名字的话
+cp -p /data/images  /etc/img  img在/etc下是没有的  即起到了更改名字的作用
+
 
 
 27.find 查找  功能强大  能从路径下查找文件
