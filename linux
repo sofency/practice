@@ -50,7 +50,7 @@ touch a.txt 创建a.txt文件
   
 8. history 记录linux中执行过的命令 
 9. 执行记录过程中的命令  !13 执行第13次输入的命令
-10. rm 删除命令    rm  文件名 删除文件
+10. rm 删除命令    rm  -rf 文件名 递归删除文件
 11. 删除一系列文件 rm 2*  删除以2开始的文件  通配符*  
 12. ?   eg 33   ls 3?3 即显示以3开头以3结尾的未知文件类型的文件
 13. ls 1[1-5]4.txt   ls 1[12345]3.txt
@@ -72,11 +72,18 @@ mkidr data/images -p
 21. 删除文件时使用rm时 应该  rm 文件 -r 删除文件夹或者文件
 
 22.连接 
-创建软连接   ln -s 1.txt(源文件)  1.softlink.txt(软连接文件名)
+创建软连接   ln -s 1.txt(源文件)  1.softlink.txt(软连接文件名) 类似于window上面软件的快捷方式
 这样就可以通过cat  1.softlink.txt 进行查看 1.txt文件的内容了  删除源文件之后 软连接失去作用
+软链接 lrwxrwxrwx 所有的用户（ugo）都具有读 写 执行的权利
 
 23.硬链接就是在文件内容上面的标签数   而软连接就是间接的作为源文件的链接
-ln 1.txt 1.hardlink.txt  //创建硬链接
+ln 1.txt 1.hardlink.txt  //创建硬链接  硬链接创建时的所有属性和源文件一样（包括所占的空间） 修改硬链接里面的内容之后，源文件也会更新
+删除源文件之后
+软链接失效，硬链接不失效
+创建同名的文件
+硬链接不生效
+软链接生效
+echo "message" >> a.txt 可以向该文件下的a.txt里面写message字符串
 
 24.grep 搜索字符   grep "ntfds"  文件名    在文件夹中查找带ntfds字符的文件  若使用ntfds的话 加上^ntfds的话必须以ntfds开头
 grep -v  "ntfds"  文件名    查找不包含ntfds的文件
@@ -102,18 +109,67 @@ cp -p /data/images  /etc/img  img在/etc下是没有的  即起到了更改名�
 27.find 查找  功能强大  能从路径下查找文件
 find /tmp  -name  name   从tmp下按名字查找那么文件  name可以和通配符连用
 find /tmp  -size  大小  根据文件大小进行查找
+find /tmp  -size +204800  大于100M的文件
 
+模糊搜索
+find /tmp  -name "name"
+find /tmp -name  init???  一个？代表一个字符 严格匹配小写的以init开头的文件
+find /tmp -iname init???  会忽略寻找文件名的大小写。
+
+根据所有者查找
+find / -user sofency  查找所有者为sofency的文件
+
+查找在一段时间内被操作的文件
+-cmin  文件属性   change
+-amin  访问时间  access
+-mmin 文件内容  modify
+find /test  -cmin -5    查找在5分钟内属性被修改的文件
+find /test -amin -5  查找在5分钟内被访问的文件
+find /test -mmin -5 查找在5分钟内内容被修改的文件
+
+
+连接查找
+-a and    -o or
+find /etc  -name demo*  -a -type f  查找/etc 下文件名以demo开头,并且文件类型是文件的文件
+find /etc  -name demo*  -a -type d  查找/etc 下文件名以demo开头,并且文件类型是文件的目录
+
+参数总结
+-name   -size  -type f d -cmin -amin -mmin -iname -user -group ? * -a -o   -exec/ok  {}\;
+
+
+对搜索后的文件执行操作
+-exec (命令) {}\;
+find /etc  -name demo* -a type f -exec ls -l {}\;
 
 28.文件的打包
 tar -cvf  test.tar  目标压缩文件       会显示将什么文件打包到tar文件里面
 压缩打包  tar -zcvf  test.tar.gz
 
-解包 tar -xvf test.tar
-加压 tar -zxvf test.tar.gz        -C   文件夹
 
-zip的压缩
-zip zz.zip  *.py
-upzip zz.zip      -d 制定路径
+29.文件查找命令
+which  查找命令  它是在所有的bin目录下查找命令
+which  ls
+whereis ls  不仅可以找到命令坐在的路径而且可以找到该命令的帮助
+whatis  命令  whatis ls  查看命令的作用
+help 命令   查看命令的信息信息
+man 命令 不能查看shell内置命令的信息 
+appropos  配置文件 获取配置文件的相关信息
+
+30.文件的压缩和解压
+打包 tar -cvf test.tar test
+压缩 gzip test.tar  
+
+两个结合
+tar -zcvf test.tar.gz test
+
+解压缩
+tar -zxvf test.tar.gz       v 是显示打包了哪些文件
+
+gzip -d 文件
+gunzip 文件压缩包
+
+zip的压缩 
+和gzip的区别就是gzip 压缩不会保留源文件 而zip压缩会保留原文件
 
 rpm 软件安装包的管理命令
 rpm -qa  模糊名字 查询模糊名字的完整名字
@@ -143,8 +199,11 @@ htop
 kill -9 进程号
 
 关机 shutdown -h 时间
+shutdown -c 取消关机
 init 5 
 reboot
+重启 init 6
+logout 登出
 
 df -h  显示存储容量
 du -h  显示当前路径使用情况
@@ -161,9 +220,31 @@ passwd 账户  设置密码
 whomai 查看当前用户
 userdel 用户名
 
+vim文本编辑命令 aio 插入操作
+vim a.txt 
+显示行号`:set nu`
+取消行号 `:set nonu`
+在按esc情况下按  
+gg到第一行
+G到最后一行
+:n到第n行
+
+dd 删除光标所在行 ndd 删除光标所在处后n行  dd也是剪切的意思 结合p和P使用
+dG删除光标处到文件末尾的内容
+nx 删除光标所在处后n个字符
+:n1,n2d 删除n1和n2之间的行
+
+yy 复制当前行  p粘贴  或者 nyy 复制光标向后n行    小写p是在光标的下面粘贴 P 是在光标的上面粘贴
+
+替换 R 在光标处按R向后进行替换
+:%s/ftp/sofency/g    表示将全文的ftp替换为sofency  %s表示全文替换
+:n1,n2s/ftp/sofency/g   表示将文件n1行到n2行之间的ftp替换为sofnecy
+
+u取消上一步操作
 
 
-
+查找字符串
+/string  然后按n 查找下一个 搜索时忽略大小写  :set ic
 
 
 
