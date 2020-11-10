@@ -11,11 +11,12 @@ import org.springframework.web.servlet.mvc.Controller;
 
 import com.sofency.top.pojo.Item;
 
+@RestController
 public class ItemController implements Controller {
 
-	@Override
-	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		//µ÷ÓÃservice²Ù×÷Êı¾İ¿â  ²éÑ¯ÉÌÆ·ÁĞ±í ÕâÀïÊ¹ÓÃµÄÊÇ¾²Ì¬Êı¾İ½øĞĞÄ£Äâ
+	@RequestMapping("/hello")
+	public List<Item> handleRequest() throws Exception {
+		//è°ƒç”¨serviceæ“ä½œæ•°æ®åº“  æŸ¥è¯¢å•†å“åˆ—è¡¨ è¿™é‡Œä½¿ç”¨çš„æ˜¯é™æ€æ•°æ®è¿›è¡Œæ¨¡æ‹Ÿ
 		List<Item> itemList = new ArrayList<Item>();
 		Item item1 = new Item();
 		item1.setItemid(1);
@@ -28,14 +29,7 @@ public class ItemController implements Controller {
 		item2.setItemprice(10);
 		itemList.add(item1);
 		itemList.add(item2);
-		
-		//·µ»ØmodelAndView
-		ModelAndView model = new ModelAndView();
-		
-		model.addObject("itemList", itemList);
-		model.setViewName("/WEB-INF/jsp/items/itemList.jsp");
-		
-		return model;
+		return itemList;
 	}
 
 }
