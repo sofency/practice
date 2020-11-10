@@ -32,7 +32,17 @@ public class ItemController implements Controller {
 		return itemList;
 	}
 	@RequestMapping(value="/rest",method=RequestMethod.PUT)
-	public String rest(String username){
+	public String rest( String username){
+		System.out.println("处理rest请求");
+		return "success";
+	}
+	
+	/*
+		
+	*/
+	
+	@RequestMapping(value="/rest",method=RequestMethod.PUT)
+	public String testInject(@RequetParam("username",defaultValue="sofency",require=false) String username){
 		System.out.println("处理rest请求");
 		return "success";
 	}
