@@ -31,5 +31,10 @@ public class ItemController implements Controller {
 		itemList.add(item2);
 		return itemList;
 	}
+	@RequestMapping(value="/rest",method=RequestMethod.PUT)
+	public String rest(String username){
+		System.out.println("处理rest请求");
+		return "success";
+	}
 
 }
