@@ -31,5 +31,12 @@
 </c:forEach>
 </table>
 </form>
+	
+<form action="rest" method="POST">
+	<!--发送rest请求进行的设置-->
+	<input type="hidden" name="_method" value="PUT"/>
+<input type="text" name="username"/>
+	<input type="submit" value="测试put"/>
+	</form>
 </body>
 </html>
