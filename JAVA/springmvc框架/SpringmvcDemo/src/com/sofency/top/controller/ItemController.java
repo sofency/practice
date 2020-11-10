@@ -37,13 +37,23 @@ public class ItemController implements Controller {
 		return "success";
 	}
 	
-	/*
-		
-	*/
 	
-	@RequestMapping(value="/rest",method=RequestMethod.PUT)
+	@RequestMapping(value="/rest",method=RequestMethod.POST)
 	public String testInject(@RequetParam("username",defaultValue="sofency",require=false) String username){
 		System.out.println("处理rest请求");
+		return "success";
+	}
+	
+	//RequestHeader("")  处理请求头信息
+	@ReqeustMapping(value="/getHeader",method=RequestMethod.POST)
+	public String header(@RequestHeader("ACCEPT-Language") String AcceptLanguage){
+		System.out.println("获取的语言类型是"+AcceptLanguage);
+		return "success";
+	}
+	//处理cookie
+	@RequestMapping(value="/cookie",method=RequestMethod.POST)
+	public String cookie(@CookieValue("JESSIONID") String sessionId){
+		System.out.println("获取的cookie是"+sessionId);
 		return "success";
 	}
 
