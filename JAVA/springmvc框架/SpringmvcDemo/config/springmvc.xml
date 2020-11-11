@@ -1,19 +1,11 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:tx="http://www.springframework.org/schema/tx"
     xmlns:mvc="http://www.springframework.org/schema/mvc"
-    xmlns:context="http://www.springframework.org/schema/context"
-    xmlns:aop="http://www.springframework.org/schema/aop" xsi:schemaLocation="
+    xsi:schemaLocation="
         http://www.springframework.org/schema/beans 
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/mvc 
-        http://www.springframework.org/schema/mvc/spring-mvc.xsd
-        http://www.springframework.org/schema/aop 
-        http://www.springframework.org/schema/aop/spring-aop.xsd
-        http://www.springframework.org/schema/context
-        http://www.springframework.org/schema/context/spring-context.xsd
-        http://www.springframework.org/schema/tx
-        http://www.springframework.org/schema/tx/spring-tx.xsd">
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
     
         <!--将加上注解@Controller的类作为springmvc的控制层  当然也可以不用配置  使用下面的方式注入controller-->
          <context:component-scan basePackage="com.sofency.top"/> 
@@ -24,5 +16,7 @@
             <property name="prefix" value="/WEB-INF/"></property><!--前缀-->
             <property name="suffix value=".jsp"></property><!--后缀-->
         </bean>
-        
+        <!--对于传统jsp对于静态资源文件的处理-->
+        <mvc:default-servlet-handler/>                                       
+
 </beans>
