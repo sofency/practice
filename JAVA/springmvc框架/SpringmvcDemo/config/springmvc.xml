@@ -17,6 +17,8 @@
             <property name="suffix value=".jsp"></property><!--后缀-->
         </bean>
         <!--对于传统jsp对于静态资源文件的处理-->
-        <mvc:default-servlet-handler/>                                       
+        <mvc:default-servlet-handler/>
+        <!--mvc的注解驱动类-->                                       
+        <mvc:annotation-driven/>                                       
 
 </beans>
