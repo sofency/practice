@@ -12,6 +12,7 @@ import org.springframework.web.servlet.mvc.Controller;
 import com.sofency.top.pojo.Item;
 
 @RestController
+//@RestController是@ResponseBody注解和@Controller的结合体 在使用json返回数据的时候要使用 <mvc:annotation-driven/>
 public class ItemController implements Controller {
 
 	@RequestMapping("/hello")
